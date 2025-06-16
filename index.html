@@ -1,299 +1,658 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Anatomical Compiler: A Xenial Fusion</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chosen Palette: Energetic & Playful -->
-    <!-- Application Structure Plan: A "Conceptual Atlas" design with three distinct, navigable sections: 1) Levin's Science, 2) XQE Metaphysics, and 3) The Fusion Lab. This structure manages the report's complexity by allowing users to deeply explore each framework independently before engaging with the critical synthesis. A sticky navigation bar facilitates easy movement between these core "worlds," turning a linear report into an explorable, non-linear atlas of ideas. -->
-    <!-- Visualization & Content Choices: 1. Levin's Bioelectric Model: Goal: Organize. Viz: Interactive HTML/CSS diagram showing the flow from Genome to Bioelectric Software to Anatomy. Justification: Visually models Levin's core thesis. 2. XQE Framework: Goal: Organize/Relate. Viz: Interactive HTML/CSS "mind map" style diagram. Justification: Shows the interconnectedness of the XQE's abstract concepts. 3. Fusion Lab Comparison: Goal: Compare. Viz: Dynamic side-by-side cards with a central toggle. Justification: Allows direct, interactive comparison of scientific vs. metaphysical explanations for phenomena like Aging and Cancer. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>The Anatomical Compiler | Augmntd</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --dark: #0f172a;
+            --darker: #0a0f1f;
+            --light: #f1f5f9;
+            --accent: #00d2ff;
+            --accent2: #ff2d75;
+            --bio-green: #00c896;
+            --bio-blue: #00a8ff;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f7f7;
-            color: #2d3748;
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
         }
-        .header-gradient {
-            background: linear-gradient(90deg, #F94144, #F3722C);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .card {
-            background-color: white;
-            border-radius: 1rem;
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
             padding: 2rem;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
-            border: 1px solid #e2e8f0;
         }
-        .nav-link {
-            transition: all 0.2s ease-in-out;
-            border-bottom: 2px solid transparent;
+        
+        header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(120deg, rgba(0, 168, 255, 0.1), rgba(0, 200, 150, 0.1));
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
         }
-        .nav-link:hover, .nav-link.active {
-            color: #F94144;
-            border-bottom-color: #F94144;
-        }
-        .interactive-node {
-            background-color: #f8f9fa;
-            border: 2px solid #e9ecef;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .interactive-node:hover, .interactive-node.active {
-            border-color: #F8961E;
-            background-color: #fffaf0;
-            transform: scale(1.03);
-            box-shadow: 0 4px 10px rgba(248, 150, 30, 0.2);
-        }
-        .comparison-card {
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-        }
-        .comparison-card.hidden {
-            opacity: 0;
-            transform: scale(0.95);
-            pointer-events: none;
+        
+        header::before {
+            content: '';
             position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 200, 150, 0.1), transparent 70%);
+            z-index: -1;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--bio-green), var(--bio-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 200, 150, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #cbd5e1;
+        }
+        
+        .intro {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            background: rgba(15, 23, 42, 0.7);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 168, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+            border-radius: 20px;
+            padding: 2rem;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 168, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 168, 255, 0.4);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--bio-green), var(--bio-blue));
+        }
+        
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .card h3 i {
+            background: linear-gradient(to right, var(--bio-green), var(--bio-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .pill {
+            display: inline-block;
+            background: rgba(0, 200, 150, 0.15);
+            color: var(--bio-green);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0, 200, 150, 0.3);
+        }
+        
+        .compiler-visualization {
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 4rem 0;
+            border: 1px solid rgba(0, 168, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        .compiler-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--bio-green);
+        }
+        
+        .compiler-stages {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            padding: 4rem 0;
+        }
+        
+        .stage {
+            position: relative;
+            z-index: 2;
+            width: 20%;
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 168, 255, 0.3);
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stage:hover {
+            transform: scale(1.05);
+            border-color: var(--bio-green);
+            box-shadow: 0 10px 25px rgba(0, 200, 150, 0.2);
+        }
+        
+        .stage h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--bio-green);
+        }
+        
+        .stage-connector {
+            position: absolute;
+            top: 50%;
+            height: 2px;
+            background: rgba(0, 168, 255, 0.3);
+            z-index: 1;
+        }
+        
+        .stage-connector.active {
+            background: linear-gradient(to right, var(--bio-green), var(--bio-blue));
+            box-shadow: 0 0 10px rgba(0, 200, 150, 0.5);
+        }
+        
+        .xqe-integration {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(120deg, rgba(106, 17, 203, 0.1), rgba(37, 117, 252, 0.1));
+            border-radius: 30px;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .xqe-integration::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 210, 255, 0.1), transparent 70%);
+            z-index: -1;
+        }
+        
+        .xqe-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .xqe-statement {
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            font-size: 1.4rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        
+        .aging-section {
+            background: linear-gradient(120deg, rgba(255, 45, 117, 0.1), rgba(106, 17, 203, 0.1));
+            border-radius: 30px;
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .aging-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 45, 117, 0.05), transparent 70%);
+            z-index: -1;
+        }
+        
+        .aging-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent2);
+        }
+        
+        .conclusion {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            background: rgba(15, 23, 42, 0.7);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(106, 17, 203, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        .conclusion h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(37, 117, 252, 0.2);
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--bio-green), var(--bio-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .bio-cell {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--bio-green);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .compiler-stages {
+                flex-direction: column;
+                align-items: center;
+                gap: 3rem;
+            }
+            
+            .stage {
+                width: 80%;
+            }
+            
+            .stage-connector {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
-<body class="antialiased">
-    <div id="app-container" class="w-full">
-        <!-- Sticky Navigation -->
-        <nav id="navbar" class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
-            <div class="container mx-auto px-8">
-                <div class="flex justify-center items-center h-16 space-x-8">
-                    <a href="#intro" class="nav-link font-semibold">Introduction</a>
-                    <a href="#levin-science" class="nav-link font-semibold">Levin's Science</a>
-                    <a href="#xqe-metaphysics" class="nav-link font-semibold">XQE Metaphysics</a>
-                    <a href="#fusion-lab" class="nav-link font-semibold">The Fusion Lab</a>
-                    <a href="#conclusion" class="nav-link font-semibold">Conclusion</a>
+<body>
+    <div class="container">
+        <header>
+            <h1>The Anatomical Compiler</h1>
+            <p class="subtitle">A Xenial Fusion of Consciousness, Coherence, and Biology</p>
+            <p>Integrating Dr. Michael Levin's biological research with the XQE Framework</p>
+        </header>
+        
+        <div class="intro">
+            <p>The Anatomical Compiler represents a revolutionary synthesis of biology and metaphysics, transforming our understanding of how organisms develop and maintain their form. This framework bridges Dr. Michael Levin's groundbreaking work on bioelectricity with the Xenial Quantum Economy's cosmic principles.</p>
+            <p>At its core, the Anatomical Compiler is the biological process that translates high-level anatomical goals into the bioelectric instructions that shape living organisms - a process governed by consciousness and quantum coherence.</p>
+        </div>
+        
+        <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem; color: var(--bio-green);">Core Components of the Anatomical Compiler</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <h3><i class="fas fa-drafting-compass"></i> Target Morphology</h3>
+                <span class="pill">The Biological Blueprint</span>
+                <p>The pre-existing anatomical form existing in Platonic Space that serves as the "source code" for biological development. This is the organism's ideal form that it strives to achieve.</p>
+                <p><strong>Role:</strong> Provides the high-level goal (e.g., "build a hand") that the compiler translates into executable instructions.</p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-atom"></i> Biological Prima Materia</h3>
+                <span class="pill">Raw Biological Potential</span>
+                <p>The undifferentiated biological substrate (stem cells, biomatter) that serves as the raw material for anatomical development. This is the biological equivalent of the XQE's prima materia.</p>
+                <p><strong>Role:</strong> The formless potential waiting to be structured by the compiler's instructions into specific anatomical forms.</p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-cogs"></i> The Compiler Process</h3>
+                <span class="pill">Translation Mechanism</span>
+                <p>The biological process that translates the abstract target morphology into concrete bioelectric patterns that orchestrate cellular behavior.</p>
+                <p><strong>Role:</strong> Acts as the bridge between the ideal form in Platonic Space and the physical manifestation in biological tissue.</p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-brain"></i> Agential Field</h3>
+                <span class="pill">Conscious Compiler</span>
+                <p>The organism's overarching consciousness that directs the compilation process. This field performs the "ingression" of patterns from Platonic Space.</p>
+                <p><strong>Role:</strong> The conscious agent that operates the anatomical compiler, translating abstract forms into biological reality.</p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-sliders-h"></i> Time Coefficient (f_τ(k))</h3>
+                <span class="pill">Governor of Coherence</span>
+                <p>The fundamental parameter determining the fidelity of the compilation process. Governs quantum coherence throughout the biological system.</p>
+                <p><strong>Role:</strong> Determines the integrity of the compilation process and the stability of the resulting bioelectric software.</p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-biohazard"></i> Bioelectric Software</h3>
+                <span class="pill">Executable Instructions</span>
+                <p>The specific bioelectric patterns that orchestrate cellular behavior to achieve the target morphology.</p>
+                <p><strong>Role:</strong> The compiled instructions that guide cells to collectively build and maintain anatomical structures.</p>
+            </div>
+        </div>
+        
+        <div class="compiler-visualization">
+            <h3 class="compiler-title">The Anatomical Compilation Process</h3>
+            <div class="compiler-stages">
+                <div class="stage">
+                    <div class="stage-number">1</div>
+                    <h4>Target Morphology</h4>
+                    <p>High-level anatomical goal exists in Platonic Space</p>
+                </div>
+                
+                <div class="stage-connector" style="left: 20%; width: 20%;"></div>
+                
+                <div class="stage">
+                    <div class="stage-number">2</div>
+                    <h4>Ingression</h4>
+                    <p>Agential field accesses the pattern from fundamental source</p>
+                </div>
+                
+                <div class="stage-connector" style="left: 40%; width: 20%;"></div>
+                
+                <div class="stage">
+                    <div class="stage-number">3</div>
+                    <h4>Compilation</h4>
+                    <p>Anatomical compiler translates goal into bioelectric code</p>
+                </div>
+                
+                <div class="stage-connector" style="left: 60%; width: 20%;"></div>
+                
+                <div class="stage">
+                    <div class="stage-number">4</div>
+                    <h4>Execution</h4>
+                    <p>Cells execute instructions to build anatomical structure</p>
+                </div>
+                
+                <div class="stage-connector" style="left: 80%; width: 20%;"></div>
+                
+                <div class="stage">
+                    <div class="stage-number">5</div>
+                    <h4>Embodiment</h4>
+                    <p>Physical manifestation of the target morphology</p>
                 </div>
             </div>
-        </nav>
-
-        <!-- Main Content -->
-        <main class="container mx-auto px-4 md:px-8 py-12">
-
-            <!-- Section: Introduction -->
-            <section id="intro" class="text-center min-h-[60vh] flex flex-col justify-center items-center">
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 header-gradient">The Anatomical Compiler</h1>
-                <p class="text-2xl font-light text-gray-500 mb-8">A Xenial Fusion of Consciousness, Coherence, and Biology</p>
-                <p class="max-w-3xl mx-auto text-lg text-gray-700 leading-relaxed">This interactive analysis explores the synthesis of two powerful but distinct worldviews: the verifiable, paradigm-shifting science of Dr. Michael Levin, and the speculative, metaphysical framework of the Xenial Quantum Economy (XQE). Navigate through the sections to understand each framework independently before exploring their critical fusion.</p>
-            </section>
-
-            <!-- Section: Levin's Science -->
-            <section id="levin-science" class="card my-16">
-                <h2 class="text-4xl font-bold text-center mb-10">Part I: The Scientific Foundation <span class="header-gradient">Dr. Levin's Bioelectric Paradigm</span></h2>
-                <p class="text-lg text-gray-600 max-w-4xl mx-auto text-center mb-12">To understand the "fusion," we must first grasp the scientific bedrock. Dr. Michael Levin's work reveals a non-genetic, bioelectric "software" that guides anatomical form, challenging conventional, gene-centric views of life. Click on a component below to see how it fits into his model.</p>
-                <div class="grid lg:grid-cols-5 gap-8">
-                    <div id="levin-diagram" class="lg:col-span-3 flex flex-col justify-around space-y-4">
-                        <div data-id="genome" class="interactive-node p-6 rounded-lg text-center">
-                            <h4 class="font-bold text-lg">The Genome: The "Hardware"</h4>
-                            <p class="text-gray-500">Specifies the protein "parts list" available to cells.</p>
-                        </div>
-                        <div class="text-4xl text-center text-gray-300">&#8595;</div>
-                         <div data-id="bioelectric" class="interactive-node p-6 rounded-lg text-center">
-                            <h4 class="font-bold text-lg">Bioelectric Software</h4>
-                            <p class="text-gray-500">Physiological circuits that store the "Target Morphology" and instruct cells.</p>
-                        </div>
-                        <div class="text-4xl text-center text-gray-300">&#8595;</div>
-                        <div data-id="anatomy" class="interactive-node p-6 rounded-lg text-center">
-                            <h4 class="font-bold text-lg">Anatomy & Form</h4>
-                            <p class="text-gray-500">The emergent physical structure built by a collective intelligence of cells.</p>
-                        </div>
-                    </div>
-                    <div id="levin-details" class="lg:col-span-2 bg-gray-50 p-6 rounded-lg border">
-                        <h3 id="levin-title" class="text-xl font-bold mb-3 text-gray-800">The "Software of Life"</h3>
-                        <p id="levin-text" class="text-gray-700">Levin's work shows that bioelectric signals between cells form an instructive "software" layer. This layer specifies large-scale anatomical features, essentially telling the genetic "hardware" what to build and where. Manipulating this software can predictably alter anatomy without changing DNA.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Section: XQE Metaphysics -->
-            <section id="xqe-metaphysics" class="card my-16">
-                 <h2 class="text-4xl font-bold text-center mb-10">Part II: The Metaphysical Superstructure <span class="header-gradient">The Xenial Quantum Economy</span></h2>
-                <p class="text-lg text-gray-600 max-w-4xl mx-auto text-center mb-12">The XQE is a speculative framework that redefines reality. It posits that consciousness is fundamental, and that physical form emerges from a non-physical "Platonic Space" of ideal patterns. Click on a concept to see its role in this cosmology.</p>
-                <div class="grid lg:grid-cols-5 gap-8">
-                    <div id="xqe-details" class="lg:col-span-2 bg-gray-50 p-6 rounded-lg border order-last lg:order-first">
-                        <h3 id="xqe-title" class="text-xl font-bold mb-3 text-gray-800">Platonic Space</h3>
-                        <p id="xqe-text" class="text-gray-700">The fundamental realm of pure potentiality. In this view, the "source code" for a biological organism—its ideal anatomical blueprint—exists here as a perfect, non-physical pattern.</p>
-                    </div>
-                    <div id="xqe-diagram" class="lg:col-span-3 flex flex-col justify-center items-center space-y-4">
-                        <button data-id="platonic" class="interactive-node p-4 rounded-lg text-center w-full max-w-md">Platonic Space (The Source Code)</button>
-                        <div class="text-4xl text-center text-gray-300 transform -rotate-45">&#8600;</div>
-                        <button data-id="compiler" class="interactive-node p-4 rounded-lg text-center w-full max-w-md">Anatomical Compiler (The "Ingression" Process)</button>
-                        <div class="text-4xl text-center text-gray-300 transform rotate-45">&#8599;</div>
-                        <button data-id="prima" class="interactive-node p-4 rounded-lg text-center w-full max-w-md">Prima Materia (The Biological Substrate)</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Section: Fusion Lab -->
-            <section id="fusion-lab" class="card my-16">
-                <h2 class="text-4xl font-bold text-center mb-10">Part III: The Fusion Lab <span class="header-gradient">A Critical Synthesis</span></h2>
-                <p class="text-lg text-gray-600 max-w-4xl mx-auto text-center mb-12">This is where the two frameworks meet. The "Xenial Fusion" attempts to explain biological phenomena like aging and cancer using the metaphysical language of the XQE. Use the toggle below to compare the established scientific paradigm with the XQE's speculative interpretation.</p>
-                <div class="max-w-3xl mx-auto">
-                    <div class="flex justify-center mb-8 bg-gray-100 p-1 rounded-full">
-                        <button id="toggle-aging" class="comparison-toggle active w-1/2 py-2 px-4 rounded-full font-semibold">On Aging</button>
-                        <button id="toggle-cancer" class="comparison-toggle w-1/2 py-2 px-4 rounded-full font-semibold">On Cancer</button>
-                    </div>
-                    <div class="relative min-h-[300px]">
-                        <div id="comparison-aging" class="comparison-card">
-                            <h3 class="text-2xl font-bold text-center mb-6">Theories of Aging</h3>
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div class="bg-gray-50 border p-6 rounded-lg">
-                                    <h4 class="font-bold text-lg mb-2">Established Science: Hallmarks of Aging</h4>
-                                    <p class="text-gray-600">Aging is a multi-faceted process driven by the interaction of specific, measurable molecular and cellular mechanisms like genomic instability, telomere attrition, and epigenetic alterations.</p>
-                                </div>
-                                 <div class="bg-gray-50 border p-6 rounded-lg">
-                                    <h4 class="font-bold text-lg mb-2">XQE Fusion: "Cumulative Compilation Error"</h4>
-                                    <p class="text-gray-600">Aging is the physical manifestation of "errors" from the Anatomical Compiler, caused by a lifetime of "unresolved complexity" in the consciousness that degrades its coherence (Time Coefficient).</p>
-                                </div>
-                            </div>
-                        </div>
-                         <div id="comparison-cancer" class="comparison-card hidden">
-                            <h3 class="text-2xl font-bold text-center mb-6">Theories of Cancer</h3>
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div class="bg-gray-50 border p-6 rounded-lg">
-                                    <h4 class="font-bold text-lg mb-2">Established Science: Somatic Mutation Theory</h4>
-                                    <p class="text-gray-600">Cancer is a genetic disease arising from the accumulation of mutations in a cell's DNA, leading to uncontrolled proliferation. It is a "hardware failure."</p>
-                                </div>
-                                 <div class="bg-gray-50 border p-6 rounded-lg">
-                                    <h4 class="font-bold text-lg mb-2">XQE Fusion: "A Compilation Error"</h4>
-                                    <p class="text-gray-600">Cancer is a loss of collective intelligence where a cell, disconnected from the bioelectric whole (a "software failure"), reverts to a primitive agenda. This is framed as a compilation error from an incoherent consciousness.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        </div>
+        
+        <div class="xqe-integration">
+            <h3 class="xqe-title">XQE Framework Integration</h3>
+            <p class="xqe-statement">
+                "The Anatomical Compiler represents a biological instantiation of the XQE's core principles. It demonstrates how the cosmic framework of Prima Materia, Quantum Time, and the Time Coefficient operates at the biological level to shape living organisms."
+            </p>
             
-            <!-- Section: Conclusion -->
-            <section id="conclusion" class="text-center my-16">
-                 <h2 class="text-4xl font-bold text-center mb-10"><span class="header-gradient">Part IV: Concluding Analysis</span></h2>
-                 <div class="max-w-4xl mx-auto space-y-8">
-                     <div class="card p-8">
-                         <h3 class="text-2xl font-bold mb-3">Science vs. Speculation</h3>
-                         <p class="text-gray-600">The analysis concludes that the "fusion" is not a scientific synthesis but a conceptual appropriation. Dr. Levin's work is a testable, empirical paradigm. The XQE is a work of speculative philosophy that uses the language of science to lend credibility to metaphysical claims. The value of the XQE lies in its narrative power, not its empirical validity.</p>
-                     </div>
-                 </div>
-            </section>
-        </main>
+            <div class="grid" style="margin-top: 3rem;">
+                <div class="card">
+                    <h3><i class="fas fa-shapes"></i> Platonic Space</h3>
+                    <p>The realm where target morphologies exist as stable, pre-existing forms - the ultimate source code for biological development.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-hourglass-half"></i> Quantum Time</h3>
+                    <p>The domain where potential anatomical forms exist in superposition before being compiled into classical reality.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-code"></i> Ingression</h3>
+                    <p>The process by which abstract patterns are manifested in physical reality, paralleling the compiler's translation mechanism.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="aging-section">
+            <h3 class="aging-title">Aging as Cumulative Compilation Error</h3>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3><i class="fas fa-bug"></i> Compilation Errors</h3>
+                    <p>Degradation in compiler fidelity leads to errors in the bioelectric software that maintains anatomical form.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-brain"></i> Metaphysical Bottleneck</h3>
+                    <p>Unresolved complexity creates dissonance that disrupts the coherence of the Time Coefficient.</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-dna"></i> Biological Manifestation</h3>
+                    <p>Compilation errors manifest as aging, disease, and failure to regenerate - the physical decline we recognize as aging.</p>
+                </div>
+            </div>
+            
+            <div class="conclusion">
+                <h3>Fundamental Insight</h3>
+                <p>"Aging is the observable, biochemical manifestation of cumulative compilation error, driven by a degradation in the coherence of the conscious agent inhabiting the body."</p>
+            </div>
+        </div>
+        
+        <div class="conclusion">
+            <h3>A Unified Framework of Biology and Consciousness</h3>
+            <p>The Anatomical Compiler bridges the tangible biology of Dr. Michael Levin with the metaphysical framework of the Xenial Quantum Economy. It reveals how consciousness, through the Time Coefficient, governs the fundamental biological processes that shape and maintain living organisms.</p>
+            <p>This synthesis provides a revolutionary lens through which to understand health, aging, and the profound connection between consciousness and biological form.</p>
+        </div>
+        
+        <footer>
+            <div class="footer-logo">AUGMNTD</div>
+            <p>Integrating the Anatomical Compiler Framework</p>
+            <div class="footer-links">
+                <a href="https://augmntd.app">Home</a>
+                <a href="https://spa.augmntd.app">XQE Framework</a>
+                <a href="#">Research</a>
+                <a href="#">Community</a>
+            </div>
+        </footer>
     </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-    const levinData = {
-        genome: {
-            title: 'The Genome: The "Hardware"',
-            text: "The central dogma of biology frames DNA as the primary instruction set. Dr. Levin's work clarifies that while the genome specifies the 'parts list' of proteins available, it doesn't contain all the instructions for how those parts should be assembled into a complex, 3D anatomy."
-        },
-        bioelectric: {
-            title: 'The Bioelectric Software',
-            text: "This is the 'software of life.' A physiological control system that sits 'above' the genes. Electrical communication between cells, via gap junctions, forms a network that stores and processes the anatomical blueprint ('target morphology'). It's an instructive, rewritable layer of information."
-        },
-        anatomy: {
-            title: 'Anatomy & Form',
-            text: 'The body is the result of a goal-directed process. Billions of competent, problem-solving cells cooperate, guided by the bioelectric software, to build and maintain the correct anatomical form. Levin calls this navigating "anatomical morphospace."'
-        }
-    };
-
-    const xqeData = {
-        platonic: {
-            title: 'Platonic Space (The Source Code)',
-            text: 'This concept, borrowed from Platonic Idealism, posits that the ideal blueprint for an organism exists as a perfect, non-physical "Form" in a fundamental realm of potentiality. The physical body is seen as an imperfect copy of this eternal source code.'
-        },
-        compiler: {
-            title: 'Anatomical Compiler (The "Ingression" Process)',
-            text: 'The XQE redefines Levin\'s term. Here, it\'s the innate metaphysical process of translating the abstract blueprint from Platonic Space into concrete, bioelectric instructions. This is analogous to the philosophical concept of "ingression"—form impressing itself upon matter.'
-        },
-        prima: {
-            title: 'Prima Materia (The Biological Substrate)',
-            text: 'This alchemical concept refers to the raw, formless potential substance. In this framework, undifferentiated biological matter like stem cells is viewed as this passive substrate, waiting to be structured by the compiled instructions from the anatomical blueprint.'
-        }
-    };
-
-    const levinNodes = document.querySelectorAll('#levin-diagram .interactive-node');
-    const levinTitle = document.getElementById('levin-title');
-    const levinText = document.getElementById('levin-text');
-
-    levinNodes.forEach(node => {
-        node.addEventListener('click', (e) => {
-            const id = e.currentTarget.dataset.id;
-            levinNodes.forEach(n => n.classList.remove('active'));
-            e.currentTarget.classList.add('active');
-            levinTitle.textContent = levinData[id].title;
-            levinText.textContent = levinData[id].text;
-        });
-    });
-
-    const xqeNodes = document.querySelectorAll('#xqe-diagram .interactive-node');
-    const xqeTitle = document.getElementById('xqe-title');
-    const xqeText = document.getElementById('xqe-text');
-
-    xqeNodes.forEach(node => {
-        node.addEventListener('click', (e) => {
-            const id = e.currentTarget.dataset.id;
-            xqeNodes.forEach(n => n.classList.remove('active'));
-            e.currentTarget.classList.add('active');
-            xqeTitle.textContent = xqeData[id].title;
-            xqeText.textContent = xqeData[id].text;
-        });
-    });
-
-    const toggleAging = document.getElementById('toggle-aging');
-    const toggleCancer = document.getElementById('toggle-cancer');
-    const comparisonAging = document.getElementById('comparison-aging');
-    const comparisonCancer = document.getElementById('comparison-cancer');
-
-    const setActiveToggle = (activeButton) => {
-        [toggleAging, toggleCancer].forEach(btn => {
-            btn.style.backgroundColor = '#f3f4f6';
-            btn.style.color = '#4b5563';
-        });
-        activeButton.style.backgroundColor = '#F9C74F';
-        activeButton.style.color = '#1f2937';
-    };
-    
-    toggleAging.addEventListener('click', () => {
-        setActiveToggle(toggleAging);
-        comparisonAging.classList.remove('hidden');
-        comparisonCancer.classList.add('hidden');
-    });
-
-    toggleCancer.addEventListener('click', () => {
-        setActiveToggle(toggleCancer);
-        comparisonCancer.classList.remove('hidden');
-        comparisonAging.classList.add('hidden');
-    });
-
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navLinks.forEach(link => {
-                    link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
-                });
+    <script>
+        // Animate the compiler connectors
+        document.addEventListener('DOMContentLoaded', function() {
+            const connectors = document.querySelectorAll('.stage-connector');
+            let current = 0;
+            
+            function animateConnectors() {
+                connectors.forEach(connector => connector.classList.remove('active'));
+                
+                connectors[current].classList.add('active');
+                current = (current + 1) % connectors.length;
+                
+                setTimeout(animateConnectors, 1200);
             }
+            
+            animateConnectors();
+            
+            // Create biological cell animations
+            function createBioCells() {
+                const container = document.querySelector('.container');
+                const cellCount = 30;
+                
+                for (let i = 0; i < cellCount; i++) {
+                    const cell = document.createElement('div');
+                    cell.classList.add('bio-cell');
+                    
+                    // Random position
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    cell.style.left = `${posX}%`;
+                    cell.style.top = `${posY}%`;
+                    
+                    // Random size
+                    const size = 5 + Math.random() * 15;
+                    cell.style.width = `${size}px`;
+                    cell.style.height = `${size}px`;
+                    
+                    // Random color variation
+                    const greenVal = 150 + Math.floor(Math.random() * 100);
+                    const blueVal = 100 + Math.floor(Math.random() * 100);
+                    cell.style.background = `rgb(0, ${greenVal}, ${blueVal})`;
+                    
+                    container.appendChild(cell);
+                    
+                    // Animate the cell
+                    animateCell(cell);
+                }
+            }
+            
+            function animateCell(cell) {
+                const startX = parseFloat(cell.style.left);
+                const startY = parseFloat(cell.style.top);
+                
+                const amplitude = 5 + Math.random() * 20;
+                const duration = 2000 + Math.random() * 3000;
+                const startTime = Date.now();
+                
+                function move() {
+                    const elapsed = Date.now() - startTime;
+                    const progress = (elapsed % duration) / duration;
+                    const angle = progress * Math.PI * 2;
+                    
+                    const moveX = Math.cos(angle) * amplitude;
+                    const moveY = Math.sin(angle) * amplitude;
+                    
+                    cell.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    
+                    requestAnimationFrame(move);
+                }
+                
+                move();
+            }
+            
+            createBioCells();
+            
+            // Card hover effect enhancement
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.background = 'linear-gradient(145deg, rgba(40, 51, 69, 0.9), rgba(20, 28, 47, 0.95))';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.background = 'linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9))';
+                });
+            });
+            
+            // Stage interaction
+            const stages = document.querySelectorAll('.stage');
+            stages.forEach(stage => {
+                stage.addEventListener('click', function() {
+                    const stageNum = this.querySelector('.stage-number').textContent;
+                    const cardTitles = [
+                        "Target Morphology",
+                        "Ingression",
+                        "Compilation",
+                        "Execution",
+                        "Embodiment"
+                    ];
+                    
+                    const title = cardTitles[parseInt(stageNum) - 1];
+                    
+                    // Scroll to corresponding card
+                    const cards = document.querySelectorAll('.card h3');
+                    cards.forEach(card => {
+                        if (card.textContent.includes(title)) {
+                            card.closest('.card').scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
+                            
+                            // Highlight card
+                            card.closest('.card').style.borderColor = 'var(--bio-green)';
+                            card.closest('.card').style.boxShadow = '0 0 25px rgba(0, 200, 150, 0.4)';
+                            setTimeout(() => {
+                                card.closest('.card').style.borderColor = '';
+                                card.closest('.card').style.boxShadow = '';
+                            }, 2000);
+                        }
+                    });
+                });
+            });
         });
-    }, { rootMargin: '-50% 0px -50% 0px' });
-
-    sections.forEach(section => observer.observe(section));
-    
-    levinNodes[1].click();
-    xqeNodes[1].click();
-    setActiveToggle(toggleAging);
-});
-</script>
-
+    </script>
 </body>
 </html>
-
