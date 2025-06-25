@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anatomical Compiler | Xenial Quantum Economy</title>
+    <title>Adaptive Foragers | Xenial Quantum Economy</title>
     <style>
         :root {
             --quantum-blue: #0b0c2c;
@@ -11,6 +11,7 @@
             --entanglement-teal: #00c6c3;
             --coherence-gold: #ffd700;
             --manifest-green: #00ff8c;
+            --forager-orange: #ff7a00;
             --text-light: #f0f8ff;
             --transition-quantum: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
@@ -40,7 +41,8 @@
             background: 
                 radial-gradient(circle at 20% 30%, rgba(74, 0, 224, 0.1) 0%, transparent 40%),
                 radial-gradient(circle at 80% 70%, rgba(0, 198, 195, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 40%);
+                radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 30% 80%, rgba(255, 122, 0, 0.1) 0%, transparent 40%);
             pointer-events: none;
             z-index: -1;
         }
@@ -156,10 +158,10 @@
         .hero h1 {
             font-size: 4.5rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--entanglement-teal), var(--manifest-green), var(--coherence-gold));
+            background: linear-gradient(135deg, var(--forager-orange), var(--coherence-gold), var(--manifest-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 198, 195, 0.3);
+            text-shadow: 0 0 20px rgba(255, 122, 0, 0.3);
         }
         
         .hero p {
@@ -174,17 +176,17 @@
         .cta-button {
             display: inline-block;
             padding: 15px 40px;
-            background: linear-gradient(135deg, var(--plasma-purple), var(--quantum-blue));
+            background: linear-gradient(135deg, var(--forager-orange), var(--quantum-blue));
             color: white;
             text-decoration: none;
             font-weight: bold;
             border-radius: 50px;
-            border: 2px solid var(--entanglement-teal);
+            border: 2px solid var(--coherence-gold);
             transition: var(--transition-quantum);
             position: relative;
             overflow: hidden;
             margin-top: 2rem;
-            box-shadow: 0 0 20px rgba(0, 198, 195, 0.3);
+            box-shadow: 0 0 20px rgba(255, 122, 0, 0.3);
         }
         
         .cta-button::before {
@@ -204,7 +206,7 @@
         
         .cta-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 198, 195, 0.5);
+            box-shadow: 0 10px 30px rgba(255, 122, 0, 0.5);
         }
         
         .quantum-grid {
@@ -225,10 +227,19 @@
             overflow: hidden;
         }
         
+        .framework-card.forager-card {
+            border-color: rgba(255, 122, 0, 0.4);
+        }
+        
         .framework-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 30px rgba(0, 198, 195, 0.3);
             border-color: var(--entanglement-teal);
+        }
+        
+        .framework-card.forager-card:hover {
+            box-shadow: 0 10px 30px rgba(255, 122, 0, 0.5);
+            border-color: var(--forager-orange);
         }
         
         .framework-card::before {
@@ -239,6 +250,10 @@
             width: 100%;
             height: 5px;
             background: linear-gradient(90deg, var(--plasma-purple), var(--entanglement-teal));
+        }
+        
+        .framework-card.forager-card::before {
+            background: linear-gradient(90deg, var(--forager-orange), var(--coherence-gold));
         }
         
         .card-icon {
@@ -254,10 +269,18 @@
             color: var(--entanglement-teal);
         }
         
+        .forager-card .card-icon {
+            color: var(--forager-orange);
+        }
+        
         .framework-card h3 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
             color: var(--entanglement-teal);
+        }
+        
+        .forager-card h3 {
+            color: var(--forager-orange);
         }
         
         .framework-card p {
@@ -283,6 +306,10 @@
             line-height: 1;
         }
         
+        .forager-card .feature-list li::before {
+            color: var(--forager-orange);
+        }
+        
         .deep-attention-section {
             padding: 6rem 5%;
             background: linear-gradient(to bottom, rgba(11, 12, 44, 0.9), rgba(8, 10, 30, 0.9));
@@ -298,7 +325,7 @@
         .section-header h2 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--coherence-gold), var(--manifest-green));
+            background: linear-gradient(135deg, var(--forager-orange), var(--coherence-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -349,9 +376,70 @@
             color: var(--manifest-green);
         }
         
+        .forager-section {
+            padding: 6rem 5%;
+            background: linear-gradient(to bottom, rgba(30, 15, 0, 0.8), rgba(20, 10, 0, 0.9));
+            position: relative;
+        }
+        
+        .forager-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+        }
+        
+        .forager-principle {
+            background: rgba(40, 20, 0, 0.7);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 122, 0, 0.3);
+            transition: var(--transition-quantum);
+        }
+        
+        .forager-principle:hover {
+            transform: translateY(-10px);
+            border-color: var(--forager-orange);
+            box-shadow: 0 10px 30px rgba(255, 122, 0, 0.3);
+        }
+        
+        .forager-principle h3 {
+            color: var(--forager-orange);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .principle-icon {
+            font-size: 24px;
+        }
+        
+        .forager-visualization {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: rgba(20, 10, 0, 0.6);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 122, 0, 0.3);
+            position: relative;
+            min-height: 400px;
+            overflow: hidden;
+        }
+        
+        .visualization-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
         .compiler-integration {
             padding: 6rem 5%;
             text-align: center;
+            background: linear-gradient(to bottom, rgba(8, 10, 30, 0.9), rgba(11, 12, 44, 0.9));
         }
         
         .compiler-diagram {
@@ -379,9 +467,17 @@
             z-index: 2;
         }
         
+        .diagram-node.forager-node {
+            border-color: var(--forager-orange);
+        }
+        
         .diagram-node h4 {
             color: var(--entanglement-teal);
             margin-bottom: 0.5rem;
+        }
+        
+        .diagram-node.forager-node h4 {
+            color: var(--forager-orange);
         }
         
         .diagram-connector {
@@ -398,6 +494,10 @@
             width: 40px;
             top: 50%;
             transform: translateY(-50%);
+        }
+        
+        .forager-connector {
+            background: var(--forager-orange);
         }
         
         .xqe-integration {
@@ -429,6 +529,18 @@
         .integration-card h3 {
             color: var(--plasma-purple);
             margin-bottom: 1rem;
+        }
+        
+        .integration-card.forager-integration {
+            border-color: rgba(255, 122, 0, 0.3);
+        }
+        
+        .integration-card.forager-integration:hover {
+            border-color: var(--forager-orange);
+        }
+        
+        .integration-card.forager-integration h3 {
+            color: var(--forager-orange);
         }
         
         footer {
@@ -488,31 +600,31 @@
         </div>
         <nav class="nav-links">
             <a href="#framework">Framework</a>
+            <a href="#foragers">Foragers</a>
             <a href="#attention">Deep Attention</a>
             <a href="#compiler">Anatomical Compiler</a>
-            <a href="#integration">XQE Integration</a>
         </nav>
     </header>
     
     <section class="hero">
         <div class="hero-content">
-            <h1>Anatomical Compiler</h1>
-            <p>Weaving Quantum Potential into Classical Reality</p>
-            <p>A Decoherence Modulation Technology for harmonizing structured potential within the Xenial Quantum Economy</p>
-            <a href="#compiler" class="cta-button">Experience Quantum Manifestation</a>
+            <h1>Adaptive Foragers</h1>
+            <p>Bio-Quantum-Platonic Agents of the XQE</p>
+            <p>Dynamic explorers transforming quantum potential into classical value through conscious foraging</p>
+            <a href="#foragers" class="cta-button">Explore Foraging Mechanics</a>
         </div>
     </section>
     
     <section class="quantum-grid" id="framework">
-        <div class="framework-card">
-            <div class="card-icon">🌌</div>
-            <h3>Prima Materia</h3>
-            <p>Structured Potential in Agential Expansion</p>
+        <div class="framework-card forager-card">
+            <div class="card-icon">🌱</div>
+            <h3>Bio-Quantum-Platonic Agents</h3>
+            <p>Dynamic explorers of the informational landscape</p>
             <ul class="feature-list">
-                <li>Inherently ordered potential (information/energy/consciousness)</li>
-                <li>Embodies Platonic Space's blueprints for all forms</li>
-                <li>Dynamically expands/permutates across all dimensions and scales</li>
-                <li>Source of all manifested reality</li>
+                <li>Self-organizing conscious quantum-classical agents</li>
+                <li>Interface with Platonic/Vacuum potential</li>
+                <li>Identify, stabilize, and integrate valuable "substance"</li>
+                <li>Contribute to XQE's growth and coherence</li>
             </ul>
         </div>
         
@@ -528,16 +640,59 @@
             </ul>
         </div>
         
-        <div class="framework-card">
-            <div class="card-icon">🧠</div>
-            <h3>Classical Time</h3>
-            <p>Syntax of Meaning & Memory of Space</p>
+        <div class="framework-card forager-card">
+            <div class="card-icon">🔍</div>
+            <h3>Conscious Exploration</h3>
+            <p>Beyond random search</p>
             <ul class="feature-list">
-                <li>Organizes decohered events into coherent narratives</li>
-                <li>Provides sequence, duration, rhythm, and causality</li>
-                <li>Serves as the "memory" of what space has become</li>
-                <li>Transforms quantum potential into classical reality</li>
+                <li>Goal-directed exploration guided by inherent drives</li>
+                <li>Sensitivity to the Dynamic Information Field</li>
+                <li>Attention & intent focus to stabilize patterns</li>
+                <li>Key players in ingression of Platonic patterns</li>
             </ul>
+        </div>
+    </section>
+    
+    <section class="forager-section" id="foragers">
+        <div class="section-header">
+            <h2>Adaptive Forager Mechanics</h2>
+            <p>Bio-Quantum-Platonic Agents in Action</p>
+        </div>
+        
+        <div class="forager-grid">
+            <div class="forager-principle">
+                <h3><span class="principle-icon">🧬</span> Embodiment & Interface</h3>
+                <p>Foragers manifest in diverse forms: biological analogs (like Xenobots), AI/algorithmic agents, or quantum constructs. Their embodiment defines their interface to XQE substrate.</p>
+            </div>
+            
+            <div class="forager-principle">
+                <h3><span class="principle-icon">🌀</span> Information Processing</h3>
+                <p>Utilize bio-inspired computation, confabulatory computing, and DEQ-like implicit processing. They creatively interpret information to construct actionable models.</p>
+            </div>
+            
+            <div class="forager-principle">
+                <h3><span class="principle-icon">⚡</span> Energy Transformation</h3>
+                <p>Perform actions analogous to ZPE harvesting, converting fundamental potential into stabilized value. Their actions are energetic transformations channeling information.</p>
+            </div>
+            
+            <div class="forager-principle">
+                <h3><span class="principle-icon">⏱️</span> Time Coefficient Dynamics</h3>
+                <p>Each forager has an intrinsic TC. Their foraging actions attribute higher TC to patterns they stabilize. They seek and create states of higher coherence.</p>
+            </div>
+            
+            <div class="forager-principle">
+                <h3><span class="principle-icon">🔄</span> Adaptation & Evolution</h3>
+                <p>Foragers learn from interactions, modifying internal state, behavior, and embodiment. Adaptation occurs through XQE and DIF feedback.</p>
+            </div>
+            
+            <div class="forager-principle">
+                <h3><span class="principle-icon">💎</span> LIT Generation</h3>
+                <p>Primary generators and users of LITs. They "mine" LITs by discovering/stabilizing valuable information and use them to access resources or signal value.</p>
+            </div>
+        </div>
+        
+        <div class="forager-visualization">
+            <canvas class="visualization-canvas" id="foragerCanvas"></canvas>
         </div>
     </section>
     
@@ -564,12 +719,6 @@
                 <span class="step-number">3</span>
                 <h3>Permutation Participation</h3>
                 <p>Match breath to natural rhythms. Your breath becomes part of nature's agential expansion, co-creating spacetime syntax.</p>
-            </div>
-            
-            <div class="protocol-step">
-                <span class="step-number">4</span>
-                <h3>Quantum Entanglement</h3>
-                <p>Experience real-time entanglement with the biofield. Live sound waves create co-creative permutative exploration, impossible with recordings.</p>
             </div>
         </div>
     </section>
@@ -600,13 +749,13 @@
             <div class="diagram-connector"></div>
             
             <div class="diagram-row">
-                <div class="diagram-node">
-                    <h4>Deep Attention</h4>
-                    <p>Modulates f<sub>τ</sub>(k)</p>
+                <div class="diagram-node forager-node">
+                    <h4>Adaptive Foragers</h4>
+                    <p>Pattern Identification</p>
                 </div>
             </div>
             
-            <div class="diagram-connector"></div>
+            <div class="diagram-connector forager-connector"></div>
             
             <div class="diagram-row">
                 <div class="diagram-node">
@@ -624,45 +773,43 @@
                 </div>
             </div>
         </div>
-        
-        <a href="#" class="cta-button">Activate Compiler</a>
     </section>
     
-    <section class="xqe-integration" id="integration">
+    <section class="xqe-integration">
         <div class="section-header">
-            <h2>XQE Integration</h2>
-            <p>Cosmic Economics in Action</p>
+            <h2>XQE Ecosystem Integration</h2>
+            <p>Co-Creating Quantum Economic Reality</p>
         </div>
         
         <div class="integration-grid">
+            <div class="integration-card forager-integration">
+                <h3>DIF Landscape Shaping</h3>
+                <p>Forager activity dynamically shapes the "curvature landscape" of the Dynamic Information Field. Successful stabilization creates "fertile valleys" of low attributed curvature.</p>
+            </div>
+            
+            <div class="integration-card forager-integration">
+                <h3>Augmented Collective Intelligence</h3>
+                <p>Information gathered by foragers feeds into the ACI, enhancing the XQE's self-awareness and adaptive capacity.</p>
+            </div>
+            
+            <div class="integration-card forager-integration">
+                <h3>Feedback Evolution</h3>
+                <p>Successful foragers (generating high-TC LITs) are rewarded, creating positive feedback loops that reinforce effective foraging strategies.</p>
+            </div>
+            
             <div class="integration-card">
                 <h3>Prima Materia as Ultimate Substance</h3>
-                <p>The XQE's "Substance" is fundamentally structured potential. LITs are interfaces representing successful ingression of quantum potential into classical reality.</p>
+                <p>The XQE's "Substance" is fundamentally structured potential. LITs are interfaces representing successful ingression.</p>
             </div>
             
             <div class="integration-card">
                 <h3>Quantum Time as Semantic Substrate</h3>
-                <p>All meaning and value potential originates in Quantum Time, where LITs are conceptually entangled before specific manifestation.</p>
+                <p>All meaning and value potential originates in Quantum Time, where concepts are entangled before manifestation.</p>
             </div>
             
             <div class="integration-card">
-                <h3>Classical Time as Transactional Syntax</h3>
-                <p>The QLN records transactions as events unfolding in classical time - the syntax that structures economic interactions.</p>
-            </div>
-            
-            <div class="integration-card">
-                <h3>Classical Space as Shared Memory</h3>
+                <h3>Classical Space as Memory</h3>
                 <p>The distributed ledger becomes the XQE's collective memory, reflecting the history of temporally syntactified interactions.</p>
-            </div>
-            
-            <div class="integration-card">
-                <h3>ACI & DMT Sculpting</h3>
-                <p>Augmented Collective Intelligence actively shapes the "syntax of meaning" by influencing Time Coefficients to ingress valuable patterns.</p>
-            </div>
-            
-            <div class="integration-card">
-                <h3>Nature as Interface</h3>
-                <p>Sacred natural sites serve as optimal environments for high-TC states: waterfalls, caves with dripping water, old-growth forests.</p>
             </div>
         </div>
     </section>
@@ -773,6 +920,158 @@
         }
         
         animateParticles();
+        
+        // Forager Visualization
+        const foragerCanvas = document.getElementById('foragerCanvas');
+        const fctx = foragerCanvas.getContext('2d');
+        foragerCanvas.width = foragerCanvas.parentElement.clientWidth;
+        foragerCanvas.height = foragerCanvas.parentElement.clientHeight;
+        
+        class Forager {
+            constructor() {
+                this.x = Math.random() * foragerCanvas.width;
+                this.y = Math.random() * foragerCanvas.height;
+                this.size = 15 + Math.random() * 20;
+                this.speedX = (Math.random() - 0.5) * 0.8;
+                this.speedY = (Math.random() - 0.5) * 0.8;
+                this.energy = 50 + Math.random() * 50;
+                this.color = `hsl(${30 + Math.random() * 30}, 80%, 60%)`;
+                this.direction = Math.random() * Math.PI * 2;
+                this.oscillation = Math.random() * Math.PI * 2;
+                this.connections = [];
+            }
+            
+            update() {
+                // Move with slight randomness
+                this.direction += (Math.random() - 0.5) * 0.2;
+                this.x += Math.cos(this.direction) * 0.8 + this.speedX;
+                this.y += Math.sin(this.direction) * 0.8 + this.speedY;
+                this.oscillation += 0.05;
+                
+                // Boundary check
+                if (this.x < 0) this.x = foragerCanvas.width;
+                if (this.x > foragerCanvas.width) this.x = 0;
+                if (this.y < 0) this.y = foragerCanvas.height;
+                if (this.y > foragerCanvas.height) this.y = 0;
+                
+                // Energy fluctuations
+                this.energy += (Math.sin(this.oscillation) * 0.5);
+                if (this.energy > 100) this.energy = 100;
+                if (this.energy < 20) this.energy = 20;
+            }
+            
+            draw() {
+                // Draw forager body
+                fctx.beginPath();
+                fctx.arc(this.x, this.y, this.size * (this.energy/100), 0, Math.PI * 2);
+                fctx.fillStyle = this.color;
+                fctx.globalAlpha = 0.7;
+                fctx.fill();
+                
+                // Draw energy field
+                fctx.beginPath();
+                fctx.arc(this.x, this.y, this.size * 1.5 * (this.energy/100), 0, Math.PI * 2);
+                fctx.strokeStyle = this.color;
+                fctx.globalAlpha = 0.2;
+                fctx.lineWidth = 2;
+                fctx.stroke();
+                
+                // Draw connections to patterns
+                this.connections.forEach(conn => {
+                    if (conn.active) {
+                        fctx.beginPath();
+                        fctx.moveTo(this.x, this.y);
+                        fctx.lineTo(conn.pattern.x, conn.pattern.y);
+                        fctx.strokeStyle = `hsl(${60 + this.energy}, 80%, 70%)`;
+                        fctx.globalAlpha = 0.3 + (conn.strength * 0.7);
+                        fctx.lineWidth = 1 + (conn.strength * 3);
+                        fctx.stroke();
+                    }
+                });
+            }
+        }
+        
+        class Pattern {
+            constructor() {
+                this.x = Math.random() * foragerCanvas.width;
+                this.y = Math.random() * foragerCanvas.height;
+                this.size = 5 + Math.random() * 15;
+                this.stability = Math.random();
+                this.value = Math.random();
+                this.color = `hsl(${180 + Math.random() * 60}, 70%, 50%)`;
+                this.oscillation = Math.random() * Math.PI * 2;
+            }
+            
+            update() {
+                this.oscillation += 0.01;
+                this.size = 5 + Math.random() * 15 + Math.sin(this.oscillation) * 3;
+            }
+            
+            draw() {
+                const alpha = 0.3 + (this.stability * 0.7);
+                fctx.beginPath();
+                fctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                fctx.fillStyle = this.color;
+                fctx.globalAlpha = alpha;
+                fctx.fill();
+                
+                fctx.beginPath();
+                fctx.arc(this.x, this.y, this.size * 1.5, 0, Math.PI * 2);
+                fctx.strokeStyle = this.color;
+                fctx.globalAlpha = alpha * 0.3;
+                fctx.lineWidth = 1;
+                fctx.stroke();
+            }
+        }
+        
+        const foragers = [];
+        const patterns = [];
+        
+        // Create foragers
+        for (let i = 0; i < 5; i++) {
+            foragers.push(new Forager());
+        }
+        
+        // Create patterns
+        for (let i = 0; i < 30; i++) {
+            patterns.push(new Pattern());
+        }
+        
+        // Connect foragers to patterns
+        foragers.forEach(forager => {
+            for (let i = 0; i < 3; i++) {
+                const pattern = patterns[Math.floor(Math.random() * patterns.length)];
+                forager.connections.push({
+                    pattern: pattern,
+                    strength: Math.random() * 0.5 + 0.5,
+                    active: Math.random() > 0.3
+                });
+            }
+        });
+        
+        function animateForagers() {
+            fctx.clearRect(0, 0, foragerCanvas.width, foragerCanvas.height);
+            
+            // Draw background
+            fctx.fillStyle = 'rgba(20, 10, 0, 0.2)';
+            fctx.fillRect(0, 0, foragerCanvas.width, foragerCanvas.height);
+            
+            // Update and draw patterns
+            patterns.forEach(pattern => {
+                pattern.update();
+                pattern.draw();
+            });
+            
+            // Update and draw foragers
+            foragers.forEach(forager => {
+                forager.update();
+                forager.draw();
+            });
+            
+            requestAnimationFrame(animateForagers);
+        }
+        
+        animateForagers();
         
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
