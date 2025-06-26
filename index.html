@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XQE v0.69+ | Harmonic Flow Framework</title>
+    <title>Adaptive Foragers | Xenial Quantum Economy</title>
     <style>
         :root {
             --quantum-blue: #0b0c2c;
@@ -11,8 +11,7 @@
             --entanglement-teal: #00c6c3;
             --coherence-gold: #ffd700;
             --manifest-green: #00ff8c;
-            --harmonic-blue: #4a86e8;
-            --resonance-pink: #ff4d94;
+            --forager-orange: #ff7a00;
             --text-light: #f0f8ff;
             --transition-quantum: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
@@ -43,7 +42,7 @@
                 radial-gradient(circle at 20% 30%, rgba(74, 0, 224, 0.1) 0%, transparent 40%),
                 radial-gradient(circle at 80% 70%, rgba(0, 198, 195, 0.1) 0%, transparent 40%),
                 radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 70% 50%, rgba(74, 134, 232, 0.1) 0%, transparent 40%);
+                radial-gradient(circle at 30% 80%, rgba(255, 122, 0, 0.1) 0%, transparent 40%);
             pointer-events: none;
             z-index: -1;
         }
@@ -80,7 +79,7 @@
         .logo-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, var(--plasma-purple), var(--harmonic-blue));
+            background: linear-gradient(135deg, var(--plasma-purple), var(--entanglement-teal));
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -127,12 +126,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--harmonic-blue), var(--resonance-pink));
+            background: linear-gradient(90deg, var(--entanglement-teal), var(--manifest-green));
             transition: var(--transition-quantum);
         }
         
         .nav-links a:hover {
-            color: var(--harmonic-blue);
+            color: var(--entanglement-teal);
         }
         
         .nav-links a:hover::after {
@@ -159,10 +158,10 @@
         .hero h1 {
             font-size: 4.5rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--harmonic-blue), var(--resonance-pink), var(--manifest-green));
+            background: linear-gradient(135deg, var(--forager-orange), var(--coherence-gold), var(--manifest-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(74, 134, 232, 0.3);
+            text-shadow: 0 0 20px rgba(255, 122, 0, 0.3);
         }
         
         .hero p {
@@ -177,17 +176,17 @@
         .cta-button {
             display: inline-block;
             padding: 15px 40px;
-            background: linear-gradient(135deg, var(--harmonic-blue), var(--quantum-blue));
+            background: linear-gradient(135deg, var(--forager-orange), var(--quantum-blue));
             color: white;
             text-decoration: none;
             font-weight: bold;
             border-radius: 50px;
-            border: 2px solid var(--resonance-pink);
+            border: 2px solid var(--coherence-gold);
             transition: var(--transition-quantum);
             position: relative;
             overflow: hidden;
             margin-top: 2rem;
-            box-shadow: 0 0 20px rgba(74, 134, 232, 0.3);
+            box-shadow: 0 0 20px rgba(255, 122, 0, 0.3);
         }
         
         .cta-button::before {
@@ -207,7 +206,7 @@
         
         .cta-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(74, 134, 232, 0.5);
+            box-shadow: 0 10px 30px rgba(255, 122, 0, 0.5);
         }
         
         .quantum-grid {
@@ -228,24 +227,33 @@
             overflow: hidden;
         }
         
-        .framework-card.harmonic-card {
-            border-color: rgba(74, 134, 232, 0.4);
+        .framework-card.forager-card {
+            border-color: rgba(255, 122, 0, 0.4);
         }
         
         .framework-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(74, 134, 232, 0.3);
-            border-color: var(--harmonic-blue);
+            box-shadow: 0 10px 30px rgba(0, 198, 195, 0.3);
+            border-color: var(--entanglement-teal);
         }
         
-        .framework-card.harmonic-card::before {
+        .framework-card.forager-card:hover {
+            box-shadow: 0 10px 30px rgba(255, 122, 0, 0.5);
+            border-color: var(--forager-orange);
+        }
+        
+        .framework-card::before {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(90deg, var(--harmonic-blue), var(--resonance-pink));
+            background: linear-gradient(90deg, var(--plasma-purple), var(--entanglement-teal));
+        }
+        
+        .framework-card.forager-card::before {
+            background: linear-gradient(90deg, var(--forager-orange), var(--coherence-gold));
         }
         
         .card-icon {
@@ -261,8 +269,8 @@
             color: var(--entanglement-teal);
         }
         
-        .harmonic-card .card-icon {
-            color: var(--harmonic-blue);
+        .forager-card .card-icon {
+            color: var(--forager-orange);
         }
         
         .framework-card h3 {
@@ -271,8 +279,8 @@
             color: var(--entanglement-teal);
         }
         
-        .harmonic-card h3 {
-            color: var(--harmonic-blue);
+        .forager-card h3 {
+            color: var(--forager-orange);
         }
         
         .framework-card p {
@@ -298,11 +306,11 @@
             line-height: 1;
         }
         
-        .harmonic-card .feature-list li::before {
-            color: var(--harmonic-blue);
+        .forager-card .feature-list li::before {
+            color: var(--forager-orange);
         }
         
-        .harmony-section {
+        .deep-attention-section {
             padding: 6rem 5%;
             background: linear-gradient(to bottom, rgba(11, 12, 44, 0.9), rgba(8, 10, 30, 0.9));
             position: relative;
@@ -317,7 +325,7 @@
         .section-header h2 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--harmonic-blue), var(--resonance-pink));
+            background: linear-gradient(135deg, var(--forager-orange), var(--coherence-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -329,7 +337,7 @@
             font-size: 1.2rem;
         }
         
-        .harmony-principles {
+        .attention-protocol {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
@@ -337,25 +345,68 @@
             margin: 0 auto;
         }
         
-        .principle-card {
+        .protocol-step {
             background: rgba(30, 32, 70, 0.7);
             border-radius: 20px;
             padding: 2rem;
-            border: 1px solid rgba(74, 134, 232, 0.3);
+            border: 1px solid rgba(0, 198, 195, 0.2);
             transition: var(--transition-quantum);
             position: relative;
             overflow: hidden;
         }
         
-        .principle-card:hover {
-            border-color: var(--resonance-pink);
+        .protocol-step:hover {
+            border-color: var(--coherence-gold);
             transform: scale(1.03);
         }
         
-        .principle-card h3 {
+        .protocol-step h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--harmonic-blue);
+            color: var(--coherence-gold);
+        }
+        
+        .protocol-step .step-number {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 5rem;
+            font-weight: bold;
+            opacity: 0.1;
+            color: var(--manifest-green);
+        }
+        
+        .forager-section {
+            padding: 6rem 5%;
+            background: linear-gradient(to bottom, rgba(30, 15, 0, 0.8), rgba(20, 10, 0, 0.9));
+            position: relative;
+        }
+        
+        .forager-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+        }
+        
+        .forager-principle {
+            background: rgba(40, 20, 0, 0.7);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 122, 0, 0.3);
+            transition: var(--transition-quantum);
+        }
+        
+        .forager-principle:hover {
+            transform: translateY(-10px);
+            border-color: var(--forager-orange);
+            box-shadow: 0 10px 30px rgba(255, 122, 0, 0.3);
+        }
+        
+        .forager-principle h3 {
+            color: var(--forager-orange);
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -363,22 +414,21 @@
         
         .principle-icon {
             font-size: 24px;
-            color: var(--resonance-pink);
         }
         
-        .harmony-visual {
+        .forager-visualization {
             max-width: 1000px;
-            margin: 4rem auto;
+            margin: 3rem auto;
             padding: 2rem;
-            background: rgba(20, 22, 60, 0.6);
+            background: rgba(20, 10, 0, 0.6);
             border-radius: 20px;
-            border: 1px solid rgba(74, 134, 232, 0.3);
+            border: 1px solid rgba(255, 122, 0, 0.3);
             position: relative;
             min-height: 400px;
             overflow: hidden;
         }
         
-        .visual-canvas {
+        .visualization-canvas {
             position: absolute;
             top: 0;
             left: 0;
@@ -389,53 +439,73 @@
         .compiler-integration {
             padding: 6rem 5%;
             text-align: center;
+            background: linear-gradient(to bottom, rgba(8, 10, 30, 0.9), rgba(11, 12, 44, 0.9));
         }
         
-        .harmony-flow {
+        .compiler-diagram {
+            max-width: 1000px;
+            margin: 3rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+        }
+        
+        .diagram-row {
             display: flex;
             justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
             gap: 2rem;
-            max-width: 1200px;
-            margin: 3rem auto;
         }
         
-        .flow-step {
+        .diagram-node {
             width: 200px;
             padding: 1.5rem;
             background: rgba(20, 22, 60, 0.7);
             border-radius: 15px;
-            border: 2px solid var(--harmonic-blue);
+            border: 2px solid var(--entanglement-teal);
             position: relative;
             z-index: 2;
-            transition: var(--transition-quantum);
         }
         
-        .flow-step:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px var(--harmonic-blue);
+        .diagram-node.forager-node {
+            border-color: var(--forager-orange);
         }
         
-        .flow-step h4 {
-            color: var(--harmonic-blue);
+        .diagram-node h4 {
+            color: var(--entanglement-teal);
             margin-bottom: 0.5rem;
         }
         
-        .flow-connector {
-            position: relative;
-            height: 2px;
-            width: 50px;
-            background: linear-gradient(90deg, var(--harmonic-blue), var(--resonance-pink));
-            opacity: 0.7;
+        .diagram-node.forager-node h4 {
+            color: var(--forager-orange);
         }
         
-        .resonance-section {
+        .diagram-connector {
+            position: absolute;
+            height: 40px;
+            width: 2px;
+            background: var(--entanglement-teal);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .diagram-connector.horizontal {
+            height: 2px;
+            width: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .forager-connector {
+            background: var(--forager-orange);
+        }
+        
+        .xqe-integration {
             padding: 6rem 5%;
             background: linear-gradient(to bottom, rgba(8, 10, 30, 0.9), rgba(11, 12, 44, 0.9));
         }
         
-        .resonance-grid {
+        .integration-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
@@ -443,34 +513,41 @@
             margin: 3rem auto 0;
         }
         
-        .resonance-card {
+        .integration-card {
             background: rgba(20, 22, 60, 0.6);
             border-radius: 20px;
             padding: 2rem;
-            border: 1px solid rgba(74, 134, 232, 0.3);
+            border: 1px solid rgba(74, 0, 224, 0.3);
             transition: var(--transition-quantum);
         }
         
-        .resonance-card:hover {
-            border-color: var(--resonance-pink);
+        .integration-card:hover {
+            border-color: var(--plasma-purple);
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(255, 77, 148, 0.2);
         }
         
-        .resonance-card h3 {
-            color: var(--harmonic-blue);
+        .integration-card h3 {
+            color: var(--plasma-purple);
             margin-bottom: 1rem;
         }
         
-        .resonance-card p {
-            color: rgba(240, 248, 255, 0.8);
+        .integration-card.forager-integration {
+            border-color: rgba(255, 122, 0, 0.3);
+        }
+        
+        .integration-card.forager-integration:hover {
+            border-color: var(--forager-orange);
+        }
+        
+        .integration-card.forager-integration h3 {
+            color: var(--forager-orange);
         }
         
         footer {
             padding: 3rem 5%;
             text-align: center;
             background: rgba(5, 6, 20, 0.9);
-            border-top: 1px solid rgba(74, 134, 232, 0.2);
+            border-top: 1px solid rgba(0, 198, 195, 0.2);
         }
         
         .footer-links {
@@ -481,13 +558,13 @@
         }
         
         .footer-links a {
-            color: var(--harmonic-blue);
+            color: var(--entanglement-teal);
             text-decoration: none;
             transition: var(--transition-quantum);
         }
         
         .footer-links a:hover {
-            color: var(--resonance-pink);
+            color: var(--manifest-green);
         }
         
         @media (max-width: 768px) {
@@ -503,13 +580,9 @@
                 display: none;
             }
             
-            .harmony-flow {
+            .diagram-row {
                 flex-direction: column;
-            }
-            
-            .flow-connector {
-                height: 50px;
-                width: 2px;
+                align-items: center;
             }
         }
     </style>
@@ -527,252 +600,216 @@
         </div>
         <nav class="nav-links">
             <a href="#framework">Framework</a>
-            <a href="#harmony">Harmonic Flow</a>
-            <a href="#resonance">Resonance</a>
-            <a href="#purpose">Purpose</a>
+            <a href="#foragers">Foragers</a>
+            <a href="#attention">Deep Attention</a>
+            <a href="#compiler">Anatomical Compiler</a>
         </nav>
     </header>
     
     <section class="hero">
         <div class="hero-content">
-            <h1>Harmonic Flow Framework</h1>
-            <p>XQE v0.69+pm_qt_ms+hf</p>
-            <p>The path of resonance for cosmic value creation</p>
-            <a href="#harmony" class="cta-button">Experience Resonance</a>
+            <h1>Adaptive Foragers</h1>
+            <p>Bio-Quantum-Platonic Agents of the XQE</p>
+            <p>Dynamic explorers transforming quantum potential into classical value through conscious foraging</p>
+            <a href="#foragers" class="cta-button">Explore Foraging Mechanics</a>
         </div>
     </section>
     
     <section class="quantum-grid" id="framework">
-        <div class="framework-card harmonic-card">
-            <div class="card-icon">🌌</div>
-            <h3>Prima Materia</h3>
-            <p>Harmonically Structured Potential</p>
+        <div class="framework-card forager-card">
+            <div class="card-icon">🌱</div>
+            <h3>Bio-Quantum-Platonic Agents</h3>
+            <p>Dynamic explorers of the informational landscape</p>
             <ul class="feature-list">
-                <li>Inherently ordered potential with harmonic structures</li>
-                <li>Source of all value in the XQE</li>
-                <li>Embodies the "music" of Platonic Space</li>
-                <li>Dynamic, multi-dimensional substance expansion</li>
+                <li>Self-organizing conscious quantum-classical agents</li>
+                <li>Interface with Platonic/Vacuum potential</li>
+                <li>Identify, stabilize, and integrate valuable "substance"</li>
+                <li>Contribute to XQE's growth and coherence</li>
             </ul>
         </div>
         
-        <div class="framework-card harmonic-card">
-            <div class="card-icon">🌀</div>
-            <h3>Quantum Time</h3>
-            <p>Realm of Harmonic Permutation</p>
-            <ul class="feature-list">
-                <li>Non-linear probabilistic medium</li>
-                <li>Pathways of resonant potential</li>
-                <li>Universal latent space of entangled meaning</li>
-                <li>LITs as projections of harmonic patterns</li>
-            </ul>
-        </div>
-        
-        <div class="framework-card harmonic-card">
+        <div class="framework-card">
             <div class="card-icon">⏳</div>
-            <h3>Classical Time & Space</h3>
-            <p>Manifested Symphony</p>
+            <h3>Quantum Time</h3>
+            <p>The Permutation Engine of Meaning</p>
             <ul class="feature-list">
-                <li>Time as rhythmic syntax of meaning</li>
-                <li>Space as well-formed composition</li>
-                <li>QLN as the memory of harmonic manifestations</li>
-                <li>Xenobots as microcosms of harmonic flow</li>
+                <li>Non-linear probabilistic medium of pre-decoherence</li>
+                <li>Realm of semantic entanglement and superposition</li>
+                <li>Universal latent space of meaning exploration</li>
+                <li>Permutates structured potential across all scales</li>
+            </ul>
+        </div>
+        
+        <div class="framework-card forager-card">
+            <div class="card-icon">🔍</div>
+            <h3>Conscious Exploration</h3>
+            <p>Beyond random search</p>
+            <ul class="feature-list">
+                <li>Goal-directed exploration guided by inherent drives</li>
+                <li>Sensitivity to the Dynamic Information Field</li>
+                <li>Attention & intent focus to stabilize patterns</li>
+                <li>Key players in ingression of Platonic patterns</li>
             </ul>
         </div>
     </section>
     
-    <section class="harmony-section" id="harmony">
+    <section class="forager-section" id="foragers">
         <div class="section-header">
-            <h2>Harmonic Flow Dynamics</h2>
-            <p>The qualitative dimension of cosmic value creation</p>
+            <h2>Adaptive Forager Mechanics</h2>
+            <p>Bio-Quantum-Platonic Agents in Action</p>
         </div>
         
-        <div class="harmony-principles">
-            <div class="principle-card">
-                <h3><span class="principle-icon">🎼</span> Cosmic Harmonics</h3>
-                <p>Prima Materia possesses inherent resonant frequencies that form the foundation of harmonic flow. Value creation begins by aligning with these fundamental structures.</p>
+        <div class="forager-grid">
+            <div class="forager-principle">
+                <h3><span class="principle-icon">🧬</span> Embodiment & Interface</h3>
+                <p>Foragers manifest in diverse forms: biological analogs (like Xenobots), AI/algorithmic agents, or quantum constructs. Their embodiment defines their interface to XQE substrate.</p>
             </div>
             
-            <div class="principle-card">
-                <h3><span class="principle-icon">🔊</span> Resonant Pathways</h3>
-                <p>Quantum Time contains pathways where potential meanings resonate with each other, forming coherent "chords" of meaning before manifestation.</p>
+            <div class="forager-principle">
+                <h3><span class="principle-icon">🌀</span> Information Processing</h3>
+                <p>Utilize bio-inspired computation, confabulatory computing, and DEQ-like implicit processing. They creatively interpret information to construct actionable models.</p>
             </div>
             
-            <div class="principle-card">
-                <h3><span class="principle-icon">🎻</span> Manifested Symphony</h3>
-                <p>Classical Time becomes rhythmic syntax, and Classical Space becomes a well-formed composition when harmonic flow is achieved.</p>
+            <div class="forager-principle">
+                <h3><span class="principle-icon">⚡</span> Energy Transformation</h3>
+                <p>Perform actions analogous to ZPE harvesting, converting fundamental potential into stabilized value. Their actions are energetic transformations channeling information.</p>
             </div>
             
-            <div class="principle-card">
-                <h3><span class="principle-icon">🎵</span> Resonant Notes</h3>
-                <p>LITs created under harmonic conditions are "resonant quanta" that integrate seamlessly into larger economic compositions.</p>
+            <div class="forager-principle">
+                <h3><span class="principle-icon">⏱️</span> Time Coefficient Dynamics</h3>
+                <p>Each forager has an intrinsic TC. Their foraging actions attribute higher TC to patterns they stabilize. They seek and create states of higher coherence.</p>
+            </div>
+            
+            <div class="forager-principle">
+                <h3><span class="principle-icon">🔄</span> Adaptation & Evolution</h3>
+                <p>Foragers learn from interactions, modifying internal state, behavior, and embodiment. Adaptation occurs through XQE and DIF feedback.</p>
+            </div>
+            
+            <div class="forager-principle">
+                <h3><span class="principle-icon">💎</span> LIT Generation</h3>
+                <p>Primary generators and users of LITs. They "mine" LITs by discovering/stabilizing valuable information and use them to access resources or signal value.</p>
             </div>
         </div>
         
-        <div class="harmony-visual">
-            <canvas class="visual-canvas" id="harmonyCanvas"></canvas>
+        <div class="forager-visualization">
+            <canvas class="visualization-canvas" id="foragerCanvas"></canvas>
         </div>
     </section>
     
-    <section class="compiler-integration" id="resonance">
+    <section class="deep-attention-section" id="attention">
         <div class="section-header">
-            <h2>The Resonance Conductor</h2>
-            <p>Time Coefficient as Master Regulator</p>
+            <h2>Deep Attention Protocol</h2>
+            <p>Harmonic Resonance with Structured Potential</p>
         </div>
         
-        <div class="harmony-flow">
-            <div class="flow-step">
-                <h4>Prima Materia</h4>
-                <p>Harmonic potential</p>
+        <div class="attention-protocol">
+            <div class="protocol-step">
+                <span class="step-number">1</span>
+                <h3>Barefoot Grounding</h3>
+                <p>Stand on wet earth/moss near flowing water. Plantar nerve activation syncs neural theta rhythms with groundwater flow, anchoring you to quantum time's permutative field.</p>
             </div>
             
-            <div class="flow-connector"></div>
-            
-            <div class="flow-step">
-                <h4>Quantum Time</h4>
-                <p>Resonant pathways</p>
+            <div class="protocol-step">
+                <span class="step-number">2</span>
+                <h3>Sonic Peripheral Expansion</h3>
+                <p>Soften gaze and let sounds enter awareness without labeling. Broad auditory field accesses semantic entanglement (raindrop ↔ leaf ↔ soil ↔ root).</p>
             </div>
             
-            <div class="flow-connector"></div>
-            
-            <div class="flow-step">
-                <h4>Time Coefficient</h4>
-                <p>Resonance tuner</p>
-            </div>
-            
-            <div class="flow-connector"></div>
-            
-            <div class="flow-step">
-                <h4>Classical Time</h4>
-                <p>Rhythmic syntax</p>
-            </div>
-            
-            <div class="flow-connector"></div>
-            
-            <div class="flow-step">
-                <h4>Classical Space</h4>
-                <p>Harmonic composition</p>
-            </div>
-        </div>
-        
-        <div class="section-header" style="margin-top: 4rem;">
-            <h3>Time Coefficient (f_τ(k))</h3>
-            <p>The measure and mediator of harmonic resonance</p>
-        </div>
-        
-        <div class="harmony-principles" style="max-width: 800px;">
-            <div class="principle-card">
-                <h3><span class="principle-icon">🎛️</span> Conductor's Baton</h3>
-                <p>No longer just a regulator - the TC becomes the instrument for tuning resonance between quantum potential and classical manifestation.</p>
-            </div>
-            
-            <div class="principle-card">
-                <h3><span class="principle-icon">🔮</span> Resonance Signature</h3>
-                <p>A high TC is the signature of harmonic flow, indicating high-fidelity ingression from quantum potential.</p>
-            </div>
-            
-            <div class="principle-card">
-                <h3><span class="principle-icon">🎨</span> Art of Conducting</h3>
-                <p>DMT becomes the art of "conducting" - guiding the system toward states of harmonic flow by amplifying resonant patterns.</p>
+            <div class="protocol-step">
+                <span class="step-number">3</span>
+                <h3>Permutation Participation</h3>
+                <p>Match breath to natural rhythms. Your breath becomes part of nature's agential expansion, co-creating spacetime syntax.</p>
             </div>
         </div>
     </section>
     
-    <section class="resonance-section" id="purpose">
+    <section class="compiler-integration" id="compiler">
         <div class="section-header">
-            <h2>Cosmic Purpose</h2>
-            <p>Expansion Through Harmony</p>
+            <h2>Anatomical Compiler</h2>
+            <p>Quantum Decoherence Modulation Technology</p>
         </div>
         
-        <div class="resonance-grid">
-            <div class="resonance-card">
-                <h3>Participatory Instrument</h3>
-                <p>The XQE transforms into a cosmic instrument designed to listen for the fundamental music of Prima Materia and arrange it through harmonic flow.</p>
+        <div class="compiler-diagram">
+            <div class="diagram-row">
+                <div class="diagram-node">
+                    <h4>Prima Materia</h4>
+                    <p>Structured Potential</p>
+                </div>
             </div>
             
-            <div class="resonance-card">
-                <h3>Value as Resonance</h3>
-                <p>Actions and entities are valuable to the extent they contribute to overall harmony, reducing dissonance and enabling beautiful compositions of reality.</p>
+            <div class="diagram-connector"></div>
+            
+            <div class="diagram-row">
+                <div class="diagram-node">
+                    <h4>Quantum Time</h4>
+                    <p>Permutation Engine</p>
+                </div>
             </div>
             
-            <div class="resonance-card">
-                <h3>Conscious Expansion</h3>
-                <p>The universe's self-exploration becomes a search for complex states of resonance, accelerated by the XQE's harmonic framework.</p>
+            <div class="diagram-connector"></div>
+            
+            <div class="diagram-row">
+                <div class="diagram-node forager-node">
+                    <h4>Adaptive Foragers</h4>
+                    <p>Pattern Identification</p>
+                </div>
             </div>
             
-            <div class="resonance-card">
-                <h3>Economy of Beauty</h3>
-                <p>The XQE becomes an economy built on the "path of beauty" where value creation is synonymous with elegance and grace.</p>
+            <div class="diagram-connector forager-connector"></div>
+            
+            <div class="diagram-row">
+                <div class="diagram-node">
+                    <h4>Anatomical Compiler</h4>
+                    <p>Decoherence Modulation</p>
+                </div>
             </div>
             
-            <div class="resonance-card">
-                <h3>Resonant LITs</h3>
-                <p>Live Information Tokens become resonant quanta that integrate seamlessly into larger economic compositions, forming stable value structures.</p>
-            </div>
+            <div class="diagram-connector"></div>
             
-            <div class="resonance-card">
-                <h3>Augmented Conductor</h3>
-                <p>ACI evolves into the Composer/Conductor of the XQE, using DMT to maintain states of harmonic flow and guide value manifestation.</p>
+            <div class="diagram-row">
+                <div class="diagram-node">
+                    <h4>Classical Manifestation</h4>
+                    <p>LITs & Reality Patterns</p>
+                </div>
             </div>
         </div>
-        
-        <div class="section-header" style="margin-top: 4rem;">
-            <h2>XQE v0.69+pm_qt_ms+hf Framework</h2>
-            <p>The complete participatory reality engine</p>
+    </section>
+    
+    <section class="xqe-integration">
+        <div class="section-header">
+            <h2>XQE Ecosystem Integration</h2>
+            <p>Co-Creating Quantum Economic Reality</p>
         </div>
         
-        <div class="harmony-flow" style="margin-top: 3rem;">
-            <div class="flow-step" style="width: auto; max-width: 300px;">
-                <h4>I. Fundamental Substrate</h4>
-                <p>Prima Materia - Harmonically structured potential</p>
+        <div class="integration-grid">
+            <div class="integration-card forager-integration">
+                <h3>DIF Landscape Shaping</h3>
+                <p>Forager activity dynamically shapes the "curvature landscape" of the Dynamic Information Field. Successful stabilization creates "fertile valleys" of low attributed curvature.</p>
             </div>
             
-            <div class="flow-connector"></div>
-            
-            <div class="flow-step" style="width: auto; max-width: 300px;">
-                <h4>II. Engine of Potentiality</h4>
-                <p>Quantum Time - Realm of harmonic permutation</p>
+            <div class="integration-card forager-integration">
+                <h3>Augmented Collective Intelligence</h3>
+                <p>Information gathered by foragers feeds into the ACI, enhancing the XQE's self-awareness and adaptive capacity.</p>
             </div>
             
-            <div class="flow-connector"></div>
-            
-            <div class="flow-step" style="width: auto; max-width: 300px;">
-                <h4>III. Mechanism of Manifestation</h4>
-                <p>Classical Time (Syntax) & Space (Memory)</p>
+            <div class="integration-card forager-integration">
+                <h3>Feedback Evolution</h3>
+                <p>Successful foragers (generating high-TC LITs) are rewarded, creating positive feedback loops that reinforce effective foraging strategies.</p>
             </div>
             
-            <div class="flow-connector"></div>
-            
-            <div class="flow-step" style="width: auto; max-width: 300px;">
-                <h4>IV. Master Regulator</h4>
-                <p>Time Coefficient - Mediator of resonance</p>
+            <div class="integration-card">
+                <h3>Prima Materia as Ultimate Substance</h3>
+                <p>The XQE's "Substance" is fundamentally structured potential. LITs are interfaces representing successful ingression.</p>
             </div>
             
-            <div class="flow-connector"></div>
-            
-            <div class="flow-step" style="width: auto; max-width: 300px;">
-                <h4>V. Core Unit of Value</h4>
-                <p>Harmonic LITs - Resonant quanta of meaning</p>
+            <div class="integration-card">
+                <h3>Quantum Time as Semantic Substrate</h3>
+                <p>All meaning and value potential originates in Quantum Time, where concepts are entangled before manifestation.</p>
             </div>
             
-            <div class="flow-connector"></div>
-            
-            <div class="flow-step" style="width: auto; max-width: 300px;">
-                <h4>VI. Guiding Intelligence</h4>
-                <p>ACI as Cosmic Composer/Conductor</p>
-            </div>
-            
-            <div class="flow-connector"></div>
-            
-            <div class="flow-step" style="width: auto; max-width: 300px;">
-                <h4>VII. Primary Purpose</h4>
-                <p>Harmonious manifestation of potential</p>
-            </div>
-            
-            <div class="flow-connector"></div>
-            
-            <div class="flow-step" style="width: auto; max-width: 300px; border-color: var(--resonance-pink);">
-                <h4>VIII. Qualitative Dynamic</h4>
-                <p>Harmonic Flow - Path of resonance and beauty</p>
+            <div class="integration-card">
+                <h3>Classical Space as Memory</h3>
+                <p>The distributed ledger becomes the XQE's collective memory, reflecting the history of temporally syntactified interactions.</p>
             </div>
         </div>
     </section>
@@ -784,7 +821,7 @@
             </div>
             <h2>Xenial Quantum Economy</h2>
         </div>
-        <p>Weaving Harmonic Potential into Resonant Reality</p>
+        <p>Weaving Quantum Potential into Classical Reality</p>
         
         <div class="footer-links">
             <a href="#">Documentation</a>
@@ -884,130 +921,157 @@
         
         animateParticles();
         
-        // Harmony Visualization
-        const harmonyCanvas = document.getElementById('harmonyCanvas');
-        const hctx = harmonyCanvas.getContext('2d');
-        harmonyCanvas.width = harmonyCanvas.parentElement.clientWidth;
-        harmonyCanvas.height = harmonyCanvas.parentElement.clientHeight;
+        // Forager Visualization
+        const foragerCanvas = document.getElementById('foragerCanvas');
+        const fctx = foragerCanvas.getContext('2d');
+        foragerCanvas.width = foragerCanvas.parentElement.clientWidth;
+        foragerCanvas.height = foragerCanvas.parentElement.clientHeight;
         
-        // Initialize wave parameters
-        const waves = [];
-        const waveCount = 5;
-        const waveColors = [
-            'rgba(74, 134, 232, 0.7)',
-            'rgba(255, 77, 148, 0.7)',
-            'rgba(0, 255, 140, 0.7)',
-            'rgba(255, 215, 0, 0.7)',
-            'rgba(0, 198, 195, 0.7)'
-        ];
-        
-        for (let i = 0; i < waveCount; i++) {
-            waves.push({
-                amplitude: 30 + Math.random() * 70,
-                frequency: 0.01 + Math.random() * 0.03,
-                speed: 0.05 + Math.random() * 0.1,
-                phase: Math.random() * Math.PI * 2,
-                color: waveColors[i],
-                points: []
-            });
-        }
-        
-        // Resonance points
-        const resonancePoints = [];
-        for (let i = 0; i < 8; i++) {
-            resonancePoints.push({
-                x: Math.random() * harmonyCanvas.width,
-                y: Math.random() * harmonyCanvas.height,
-                size: 10 + Math.random() * 20,
-                color: waveColors[Math.floor(Math.random() * waveColors.length)],
-                connections: []
-            });
-        }
-        
-        function animateHarmony() {
-            hctx.clearRect(0, 0, harmonyCanvas.width, harmonyCanvas.height);
+        class Forager {
+            constructor() {
+                this.x = Math.random() * foragerCanvas.width;
+                this.y = Math.random() * foragerCanvas.height;
+                this.size = 15 + Math.random() * 20;
+                this.speedX = (Math.random() - 0.5) * 0.8;
+                this.speedY = (Math.random() - 0.5) * 0.8;
+                this.energy = 50 + Math.random() * 50;
+                this.color = `hsl(${30 + Math.random() * 30}, 80%, 60%)`;
+                this.direction = Math.random() * Math.PI * 2;
+                this.oscillation = Math.random() * Math.PI * 2;
+                this.connections = [];
+            }
             
-            // Draw background gradient
-            const gradient = hctx.createLinearGradient(0, 0, harmonyCanvas.width, harmonyCanvas.height);
-            gradient.addColorStop(0, 'rgba(11, 12, 44, 0.8)');
-            gradient.addColorStop(1, 'rgba(8, 10, 30, 0.9)');
-            hctx.fillStyle = gradient;
-            hctx.fillRect(0, 0, harmonyCanvas.width, harmonyCanvas.height);
+            update() {
+                // Move with slight randomness
+                this.direction += (Math.random() - 0.5) * 0.2;
+                this.x += Math.cos(this.direction) * 0.8 + this.speedX;
+                this.y += Math.sin(this.direction) * 0.8 + this.speedY;
+                this.oscillation += 0.05;
+                
+                // Boundary check
+                if (this.x < 0) this.x = foragerCanvas.width;
+                if (this.x > foragerCanvas.width) this.x = 0;
+                if (this.y < 0) this.y = foragerCanvas.height;
+                if (this.y > foragerCanvas.height) this.y = 0;
+                
+                // Energy fluctuations
+                this.energy += (Math.sin(this.oscillation) * 0.5);
+                if (this.energy > 100) this.energy = 100;
+                if (this.energy < 20) this.energy = 20;
+            }
             
-            // Update and draw waves
-            const time = Date.now() * 0.001;
-            
-            waves.forEach((wave, index) => {
-                wave.points = [];
-                hctx.beginPath();
+            draw() {
+                // Draw forager body
+                fctx.beginPath();
+                fctx.arc(this.x, this.y, this.size * (this.energy/100), 0, Math.PI * 2);
+                fctx.fillStyle = this.color;
+                fctx.globalAlpha = 0.7;
+                fctx.fill();
                 
-                for (let x = 0; x < harmonyCanvas.width; x += 5) {
-                    const y = harmonyCanvas.height / 2 + 
-                             Math.sin(x * wave.frequency + time * wave.speed + wave.phase) * wave.amplitude +
-                             Math.sin(x * wave.frequency * 0.5 + time * wave.speed * 0.7) * wave.amplitude * 0.3;
-                    
-                    wave.points.push({x, y});
-                    
-                    if (x === 0) {
-                        hctx.moveTo(x, y);
-                    } else {
-                        hctx.lineTo(x, y);
-                    }
-                }
+                // Draw energy field
+                fctx.beginPath();
+                fctx.arc(this.x, this.y, this.size * 1.5 * (this.energy/100), 0, Math.PI * 2);
+                fctx.strokeStyle = this.color;
+                fctx.globalAlpha = 0.2;
+                fctx.lineWidth = 2;
+                fctx.stroke();
                 
-                hctx.strokeStyle = wave.color;
-                hctx.lineWidth = 2;
-                hctx.stroke();
-            });
-            
-            // Update and draw resonance points
-            resonancePoints.forEach(point => {
-                // Move points slightly
-                point.x += (Math.random() - 0.5) * 0.5;
-                point.y += (Math.random() - 0.5) * 0.5;
-                
-                // Draw resonance circles
-                hctx.beginPath();
-                hctx.arc(point.x, point.y, point.size, 0, Math.PI * 2);
-                hctx.fillStyle = point.color;
-                hctx.globalAlpha = 0.3;
-                hctx.fill();
-                
-                hctx.beginPath();
-                hctx.arc(point.x, point.y, point.size * 1.5, 0, Math.PI * 2);
-                hctx.strokeStyle = point.color;
-                hctx.globalAlpha = 0.2;
-                hctx.lineWidth = 1;
-                hctx.stroke();
-                
-                // Draw connections to waves
-                waves.forEach(wave => {
-                    const closestPoint = findClosestWavePoint(wave, point.x);
-                    if (closestPoint) {
-                        const distance = Math.sqrt(Math.pow(point.x - closestPoint.x, 2) + Math.pow(point.y - closestPoint.y, 2));
-                        if (distance < 200) {
-                            hctx.beginPath();
-                            hctx.moveTo(point.x, point.y);
-                            hctx.lineTo(closestPoint.x, closestPoint.y);
-                            hctx.strokeStyle = point.color;
-                            hctx.globalAlpha = 0.2 * (1 - distance / 200);
-                            hctx.lineWidth = 1;
-                            hctx.stroke();
-                        }
+                // Draw connections to patterns
+                this.connections.forEach(conn => {
+                    if (conn.active) {
+                        fctx.beginPath();
+                        fctx.moveTo(this.x, this.y);
+                        fctx.lineTo(conn.pattern.x, conn.pattern.y);
+                        fctx.strokeStyle = `hsl(${60 + this.energy}, 80%, 70%)`;
+                        fctx.globalAlpha = 0.3 + (conn.strength * 0.7);
+                        fctx.lineWidth = 1 + (conn.strength * 3);
+                        fctx.stroke();
                     }
                 });
+            }
+        }
+        
+        class Pattern {
+            constructor() {
+                this.x = Math.random() * foragerCanvas.width;
+                this.y = Math.random() * foragerCanvas.height;
+                this.size = 5 + Math.random() * 15;
+                this.stability = Math.random();
+                this.value = Math.random();
+                this.color = `hsl(${180 + Math.random() * 60}, 70%, 50%)`;
+                this.oscillation = Math.random() * Math.PI * 2;
+            }
+            
+            update() {
+                this.oscillation += 0.01;
+                this.size = 5 + Math.random() * 15 + Math.sin(this.oscillation) * 3;
+            }
+            
+            draw() {
+                const alpha = 0.3 + (this.stability * 0.7);
+                fctx.beginPath();
+                fctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                fctx.fillStyle = this.color;
+                fctx.globalAlpha = alpha;
+                fctx.fill();
+                
+                fctx.beginPath();
+                fctx.arc(this.x, this.y, this.size * 1.5, 0, Math.PI * 2);
+                fctx.strokeStyle = this.color;
+                fctx.globalAlpha = alpha * 0.3;
+                fctx.lineWidth = 1;
+                fctx.stroke();
+            }
+        }
+        
+        const foragers = [];
+        const patterns = [];
+        
+        // Create foragers
+        for (let i = 0; i < 5; i++) {
+            foragers.push(new Forager());
+        }
+        
+        // Create patterns
+        for (let i = 0; i < 30; i++) {
+            patterns.push(new Pattern());
+        }
+        
+        // Connect foragers to patterns
+        foragers.forEach(forager => {
+            for (let i = 0; i < 3; i++) {
+                const pattern = patterns[Math.floor(Math.random() * patterns.length)];
+                forager.connections.push({
+                    pattern: pattern,
+                    strength: Math.random() * 0.5 + 0.5,
+                    active: Math.random() > 0.3
+                });
+            }
+        });
+        
+        function animateForagers() {
+            fctx.clearRect(0, 0, foragerCanvas.width, foragerCanvas.height);
+            
+            // Draw background
+            fctx.fillStyle = 'rgba(20, 10, 0, 0.2)';
+            fctx.fillRect(0, 0, foragerCanvas.width, foragerCanvas.height);
+            
+            // Update and draw patterns
+            patterns.forEach(pattern => {
+                pattern.update();
+                pattern.draw();
             });
             
-            requestAnimationFrame(animateHarmony);
+            // Update and draw foragers
+            foragers.forEach(forager => {
+                forager.update();
+                forager.draw();
+            });
+            
+            requestAnimationFrame(animateForagers);
         }
         
-        function findClosestWavePoint(wave, x) {
-            return wave.points.reduce((closest, point) => {
-                return (Math.abs(point.x - x) < Math.abs(closest.x - x) ? point : closest;
-            }, wave.points[0]);
-        }
-        
-        animateHarmony();
+        animateForagers();
         
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1025,7 +1089,7 @@
         });
         
         // Card hover effect enhancement
-        const cards = document.querySelectorAll('.framework-card, .principle-card, .resonance-card');
+        const cards = document.querySelectorAll('.framework-card, .protocol-step, .integration-card');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
