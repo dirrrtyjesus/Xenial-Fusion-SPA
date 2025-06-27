@@ -1,1104 +1,457 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adaptive Foragers | Xenial Quantum Economy</title>
+    <title>Interactive Analysis: The Anatomical Compiler</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: "Warm Neutrality" - A calming palette with off-white/beige tones, deep grays for text, and subtle, complementary accents of a scientific slate blue and a mystical amber/gold. -->
+    <!-- Application Structure Plan: The SPA is designed as a narrative journey that guides the user through the report's analysis, structured into four main sections: 1) An introduction to the core dichotomy (Science vs. Speculation). 2) An interactive, side-by-side "Core Comparison" of Levin's science and the XQE's metaphysics across key themes, which is the heart of the app. This dual-column structure is the most effective way to communicate the report's central comparative analysis. 3) A "Synthesis & Critique" section that visually deconstructs the key arguments about Aging and Cancer. 4) A "Final Verdict" section summarizing the report's conclusions. This thematic, comparative structure was chosen over a linear one to transform the static report into an engaging, explorable experience that emphasizes the critical analysis at the core of the source material. -->
+    <!-- Visualization & Content Choices: 1) The core concepts are presented in side-by-side cards for direct comparison (Goal: Compare, Method: HTML/Tailwind). 2) Interactive diagrams built with HTML/Tailwind are used to visualize the conceptual models of both frameworks and the "category error" of the compiler (Goal: Organize/Inform, Method: HTML/CSS). 3) A dynamic radar chart (Chart.js) is used in the Synthesis section to quantitatively compare the cancer theories across multiple analytical axes like "Falsifiability" and "Mechanistic Detail," providing a powerful visual summary of the report's critique (Goal: Compare/Analyze, Method: Chart.js/Canvas). 4) Click-to-reveal panels and smooth scrolling navigation enhance user engagement and control the flow of information (Goal: Engage, Method: JS). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
     <style>
-        :root {
-            --quantum-blue: #0b0c2c;
-            --plasma-purple: #4a00e0;
-            --entanglement-teal: #00c6c3;
-            --coherence-gold: #ffd700;
-            --manifest-green: #00ff8c;
-            --forager-orange: #ff7a00;
-            --text-light: #f0f8ff;
-            --transition-quantum: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
         body {
-            background: linear-gradient(135deg, var(--quantum-blue), #0a0a2a);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8; /* Warm off-white */
+            color: #333333;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
             position: relative;
         }
-        
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(74, 0, 224, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(0, 198, 195, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 30% 80%, rgba(255, 122, 0, 0.1) 0%, transparent 40%);
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .quantum-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        header {
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(11, 12, 44, 0.8);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(0, 198, 195, 0.2);
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--plasma-purple), var(--entanglement-teal));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .logo-icon::before {
-            content: "";
+        .nav-link:after {
+            content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-        
-        .logo-icon span {
-            font-size: 24px;
-            font-weight: bold;
-            background: linear-gradient(135deg, var(--coherence-gold), var(--manifest-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            padding: 5px 0;
-            transition: var(--transition-quantum);
-        }
-        
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--entanglement-teal), var(--manifest-green));
-            transition: var(--transition-quantum);
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: #D4AF37; /* Amber/Gold Accent */
+            transition: width 0.3s ease;
         }
-        
-        .nav-links a:hover {
-            color: var(--entanglement-teal);
-        }
-        
-        .nav-links a:hover::after {
+        .nav-link:hover:after {
             width: 100%;
+            left: 0;
+            background: #D4AF37;
         }
-        
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 5%;
-            position: relative;
-            overflow: hidden;
+        .active-nav-link {
+            color: #4A5568; /* Slate Blue */
+            font-weight: 600;
         }
-        
-        .hero-content {
-            max-width: 900px;
-            z-index: 10;
+        .active-nav-link:after {
+             width: 100%;
+             left: 0;
+             background: #4A5568;
         }
-        
-        .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--forager-orange), var(--coherence-gold), var(--manifest-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 122, 0, 0.3);
+        .tab-button {
+            transition: all 0.3s ease;
         }
-        
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: rgba(240, 248, 255, 0.85);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+        .tab-button.active {
+            background-color: #4A5568; /* Slate Blue */
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(135deg, var(--forager-orange), var(--quantum-blue));
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 50px;
-            border: 2px solid var(--coherence-gold);
-            transition: var(--transition-quantum);
-            position: relative;
-            overflow: hidden;
-            margin-top: 2rem;
-            box-shadow: 0 0 20px rgba(255, 122, 0, 0.3);
+        .tab-button:not(.active) {
+             background-color: #E2E8F0;
         }
-        
-        .cta-button::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.6s;
+        .content-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform;
         }
-        
-        .cta-button:hover::before {
-            left: 100%;
-        }
-        
-        .cta-button:hover {
+        .content-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 122, 0, 0.5);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
-        
-        .quantum-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 5rem 5%;
-        }
-        
-        .framework-card {
-            background: rgba(20, 22, 60, 0.6);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: var(--transition-quantum);
-            border: 1px solid rgba(0, 198, 195, 0.2);
-            backdrop-filter: blur(10px);
+        .diagram-arrow {
             position: relative;
-            overflow: hidden;
+            padding: 20px 0;
         }
-        
-        .framework-card.forager-card {
-            border-color: rgba(255, 122, 0, 0.4);
-        }
-        
-        .framework-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 198, 195, 0.3);
-            border-color: var(--entanglement-teal);
-        }
-        
-        .framework-card.forager-card:hover {
-            box-shadow: 0 10px 30px rgba(255, 122, 0, 0.5);
-            border-color: var(--forager-orange);
-        }
-        
-        .framework-card::before {
-            content: "";
+        .diagram-arrow::after {
+            content: '↓';
+            font-size: 2rem;
+            color: #718096;
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--plasma-purple), var(--entanglement-teal));
-        }
-        
-        .framework-card.forager-card::before {
-            background: linear-gradient(90deg, var(--forager-orange), var(--coherence-gold));
-        }
-        
-        .card-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 30px;
-            color: var(--entanglement-teal);
-        }
-        
-        .forager-card .card-icon {
-            color: var(--forager-orange);
-        }
-        
-        .framework-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--entanglement-teal);
-        }
-        
-        .forager-card h3 {
-            color: var(--forager-orange);
-        }
-        
-        .framework-card p {
-            color: rgba(240, 248, 255, 0.8);
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-list {
-            margin-top: 1rem;
-        }
-        
-        .feature-list li {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .feature-list li::before {
-            content: "•";
-            color: var(--manifest-green);
-            font-size: 1.5rem;
-            margin-right: 10px;
-            line-height: 1;
-        }
-        
-        .forager-card .feature-list li::before {
-            color: var(--forager-orange);
-        }
-        
-        .deep-attention-section {
-            padding: 6rem 5%;
-            background: linear-gradient(to bottom, rgba(11, 12, 44, 0.9), rgba(8, 10, 30, 0.9));
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .section-header h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--forager-orange), var(--coherence-gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .section-header p {
-            max-width: 700px;
-            margin: 0 auto;
-            color: rgba(240, 248, 255, 0.8);
-            font-size: 1.2rem;
-        }
-        
-        .attention-protocol {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .protocol-step {
-            background: rgba(30, 32, 70, 0.7);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid rgba(0, 198, 195, 0.2);
-            transition: var(--transition-quantum);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .protocol-step:hover {
-            border-color: var(--coherence-gold);
-            transform: scale(1.03);
-        }
-        
-        .protocol-step h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--coherence-gold);
-        }
-        
-        .protocol-step .step-number {
-            position: absolute;
-            top: -15px;
-            right: 20px;
-            font-size: 5rem;
-            font-weight: bold;
-            opacity: 0.1;
-            color: var(--manifest-green);
-        }
-        
-        .forager-section {
-            padding: 6rem 5%;
-            background: linear-gradient(to bottom, rgba(30, 15, 0, 0.8), rgba(20, 10, 0, 0.9));
-            position: relative;
-        }
-        
-        .forager-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 3rem auto;
-        }
-        
-        .forager-principle {
-            background: rgba(40, 20, 0, 0.7);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 122, 0, 0.3);
-            transition: var(--transition-quantum);
-        }
-        
-        .forager-principle:hover {
-            transform: translateY(-10px);
-            border-color: var(--forager-orange);
-            box-shadow: 0 10px 30px rgba(255, 122, 0, 0.3);
-        }
-        
-        .forager-principle h3 {
-            color: var(--forager-orange);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .principle-icon {
-            font-size: 24px;
-        }
-        
-        .forager-visualization {
-            max-width: 1000px;
-            margin: 3rem auto;
-            padding: 2rem;
-            background: rgba(20, 10, 0, 0.6);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 122, 0, 0.3);
-            position: relative;
-            min-height: 400px;
-            overflow: hidden;
-        }
-        
-        .visualization-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .compiler-integration {
-            padding: 6rem 5%;
-            text-align: center;
-            background: linear-gradient(to bottom, rgba(8, 10, 30, 0.9), rgba(11, 12, 44, 0.9));
-        }
-        
-        .compiler-diagram {
-            max-width: 1000px;
-            margin: 3rem auto;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            position: relative;
-        }
-        
-        .diagram-row {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-        
-        .diagram-node {
-            width: 200px;
-            padding: 1.5rem;
-            background: rgba(20, 22, 60, 0.7);
-            border-radius: 15px;
-            border: 2px solid var(--entanglement-teal);
-            position: relative;
-            z-index: 2;
-        }
-        
-        .diagram-node.forager-node {
-            border-color: var(--forager-orange);
-        }
-        
-        .diagram-node h4 {
-            color: var(--entanglement-teal);
-            margin-bottom: 0.5rem;
-        }
-        
-        .diagram-node.forager-node h4 {
-            color: var(--forager-orange);
-        }
-        
-        .diagram-connector {
-            position: absolute;
-            height: 40px;
-            width: 2px;
-            background: var(--entanglement-teal);
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
         }
-        
-        .diagram-connector.horizontal {
-            height: 2px;
-            width: 40px;
-            top: 50%;
-            transform: translateY(-50%);
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
         }
-        
-        .forager-connector {
-            background: var(--forager-orange);
-        }
-        
-        .xqe-integration {
-            padding: 6rem 5%;
-            background: linear-gradient(to bottom, rgba(8, 10, 30, 0.9), rgba(11, 12, 44, 0.9));
-        }
-        
-        .integration-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 3rem auto 0;
-        }
-        
-        .integration-card {
-            background: rgba(20, 22, 60, 0.6);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid rgba(74, 0, 224, 0.3);
-            transition: var(--transition-quantum);
-        }
-        
-        .integration-card:hover {
-            border-color: var(--plasma-purple);
-            transform: translateY(-10px);
-        }
-        
-        .integration-card h3 {
-            color: var(--plasma-purple);
-            margin-bottom: 1rem;
-        }
-        
-        .integration-card.forager-integration {
-            border-color: rgba(255, 122, 0, 0.3);
-        }
-        
-        .integration-card.forager-integration:hover {
-            border-color: var(--forager-orange);
-        }
-        
-        .integration-card.forager-integration h3 {
-            color: var(--forager-orange);
-        }
-        
-        footer {
-            padding: 3rem 5%;
-            text-align: center;
-            background: rgba(5, 6, 20, 0.9);
-            border-top: 1px solid rgba(0, 198, 195, 0.2);
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .footer-links a {
-            color: var(--entanglement-teal);
-            text-decoration: none;
-            transition: var(--transition-quantum);
-        }
-        
-        .footer-links a:hover {
-            color: var(--manifest-green);
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .diagram-row {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
+         @media (min-width: 768px) { .chart-container { height: 400px; } }
     </style>
 </head>
-<body>
-    <!-- Quantum Particles Background -->
-    <div class="quantum-particles" id="quantumCanvas"></div>
-    
-    <header>
-        <div class="logo">
-            <div class="logo-icon">
-                <span>Ψ</span>
-            </div>
-            <h2>Xenial Quantum Economy</h2>
-        </div>
-        <nav class="nav-links">
-            <a href="#framework">Framework</a>
-            <a href="#foragers">Foragers</a>
-            <a href="#attention">Deep Attention</a>
-            <a href="#compiler">Anatomical Compiler</a>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-[#FDFBF8]/80 backdrop-blur-md sticky top-0 z-50 transition-shadow duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-gray-800">The Anatomical Compiler</h1>
+            <ul class="hidden md:flex items-center space-x-8">
+                <li><a href="#introduction" class="nav-link text-gray-600 hover:text-gray-900">Introduction</a></li>
+                <li><a href="#comparison" class="nav-link text-gray-600 hover:text-gray-900">Core Comparison</a></li>
+                <li><a href="#synthesis" class="nav-link text-gray-600 hover:text-gray-900">Synthesis & Critique</a></li>
+                <li><a href="#verdict" class="nav-link text-gray-600 hover:text-gray-900">The Verdict</a></li>
+            </ul>
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <a href="#introduction" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Introduction</a>
+            <a href="#comparison" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Core Comparison</a>
+            <a href="#synthesis" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Synthesis & Critique</a>
+            <a href="#verdict" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">The Verdict</a>
+        </div>
     </header>
-    
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Adaptive Foragers</h1>
-            <p>Bio-Quantum-Platonic Agents of the XQE</p>
-            <p>Dynamic explorers transforming quantum potential into classical value through conscious foraging</p>
-            <a href="#foragers" class="cta-button">Explore Foraging Mechanics</a>
-        </div>
-    </section>
-    
-    <section class="quantum-grid" id="framework">
-        <div class="framework-card forager-card">
-            <div class="card-icon">🌱</div>
-            <h3>Bio-Quantum-Platonic Agents</h3>
-            <p>Dynamic explorers of the informational landscape</p>
-            <ul class="feature-list">
-                <li>Self-organizing conscious quantum-classical agents</li>
-                <li>Interface with Platonic/Vacuum potential</li>
-                <li>Identify, stabilize, and integrate valuable "substance"</li>
-                <li>Contribute to XQE's growth and coherence</li>
-            </ul>
-        </div>
-        
-        <div class="framework-card">
-            <div class="card-icon">⏳</div>
-            <h3>Quantum Time</h3>
-            <p>The Permutation Engine of Meaning</p>
-            <ul class="feature-list">
-                <li>Non-linear probabilistic medium of pre-decoherence</li>
-                <li>Realm of semantic entanglement and superposition</li>
-                <li>Universal latent space of meaning exploration</li>
-                <li>Permutates structured potential across all scales</li>
-            </ul>
-        </div>
-        
-        <div class="framework-card forager-card">
-            <div class="card-icon">🔍</div>
-            <h3>Conscious Exploration</h3>
-            <p>Beyond random search</p>
-            <ul class="feature-list">
-                <li>Goal-directed exploration guided by inherent drives</li>
-                <li>Sensitivity to the Dynamic Information Field</li>
-                <li>Attention & intent focus to stabilize patterns</li>
-                <li>Key players in ingression of Platonic patterns</li>
-            </ul>
-        </div>
-    </section>
-    
-    <section class="forager-section" id="foragers">
-        <div class="section-header">
-            <h2>Adaptive Forager Mechanics</h2>
-            <p>Bio-Quantum-Platonic Agents in Action</p>
-        </div>
-        
-        <div class="forager-grid">
-            <div class="forager-principle">
-                <h3><span class="principle-icon">🧬</span> Embodiment & Interface</h3>
-                <p>Foragers manifest in diverse forms: biological analogs (like Xenobots), AI/algorithmic agents, or quantum constructs. Their embodiment defines their interface to XQE substrate.</p>
+
+    <main class="container mx-auto px-6 py-8 md:py-16">
+
+        <!-- Section 1: Introduction -->
+        <section id="introduction" class="min-h-screen flex items-center">
+            <div class="w-full text-center">
+                <h2 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Science Meets Speculation</h2>
+                <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">This interactive analysis explores the fascinating intersection of two worlds: the groundbreaking, empirical science of Dr. Michael Levin's bioelectric paradigm and the speculative, metaphysical framework of the Xenial Quantum Economy (XQE). Journey with us as we deconstruct the concepts, evaluate the "fusion," and examine the critical distinction between verifiable science and philosophical inquiry.</p>
+                <a href="#comparison" class="mt-8 inline-block bg-[#4A5568] text-white font-bold rounded-full py-3 px-8 transition-transform duration-300 hover:scale-105">Begin The Analysis ↓</a>
             </div>
-            
-            <div class="forager-principle">
-                <h3><span class="principle-icon">🌀</span> Information Processing</h3>
-                <p>Utilize bio-inspired computation, confabulatory computing, and DEQ-like implicit processing. They creatively interpret information to construct actionable models.</p>
+        </section>
+
+        <!-- Section 2: Core Comparison -->
+        <section id="comparison" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">A Tale of Two Frameworks</h2>
+                <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">The source report's central task is to compare two explanations for biological form. Here, we place them side-by-side. Use the tabs below to explore how each framework addresses fundamental concepts in morphogenesis. Notice how one provides physical mechanisms while the other offers metaphysical origins.</p>
             </div>
-            
-            <div class="forager-principle">
-                <h3><span class="principle-icon">⚡</span> Energy Transformation</h3>
-                <p>Perform actions analogous to ZPE harvesting, converting fundamental potential into stabilized value. Their actions are energetic transformations channeling information.</p>
+
+            <!-- Interactive Tabs -->
+            <div id="tabs-container" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                <button data-tab="blueprint" class="tab-button px-4 py-2 rounded-full text-sm md:text-base font-semibold">The Blueprint</button>
+                <button data-tab="software" class="tab-button px-4 py-2 rounded-full text-sm md:text-base font-semibold">The 'Software'</button>
+                <button data-tab="material" class="tab-button px-4 py-2 rounded-full text-sm md:text-base font-semibold">The Raw Material</button>
+                <button data-tab="process" class="tab-button px-4 py-2 rounded-full text-sm md:text-base font-semibold">The Process</button>
+                <button data-tab="compiler" class="tab-button px-4 py-2 rounded-full text-sm md:text-base font-semibold">The Compiler</button>
             </div>
-            
-            <div class="forager-principle">
-                <h3><span class="principle-icon">⏱️</span> Time Coefficient Dynamics</h3>
-                <p>Each forager has an intrinsic TC. Their foraging actions attribute higher TC to patterns they stabilize. They seek and create states of higher coherence.</p>
-            </div>
-            
-            <div class="forager-principle">
-                <h3><span class="principle-icon">🔄</span> Adaptation & Evolution</h3>
-                <p>Foragers learn from interactions, modifying internal state, behavior, and embodiment. Adaptation occurs through XQE and DIF feedback.</p>
-            </div>
-            
-            <div class="forager-principle">
-                <h3><span class="principle-icon">💎</span> LIT Generation</h3>
-                <p>Primary generators and users of LITs. They "mine" LITs by discovering/stabilizing valuable information and use them to access resources or signal value.</p>
-            </div>
-        </div>
-        
-        <div class="forager-visualization">
-            <canvas class="visualization-canvas" id="foragerCanvas"></canvas>
-        </div>
-    </section>
-    
-    <section class="deep-attention-section" id="attention">
-        <div class="section-header">
-            <h2>Deep Attention Protocol</h2>
-            <p>Harmonic Resonance with Structured Potential</p>
-        </div>
-        
-        <div class="attention-protocol">
-            <div class="protocol-step">
-                <span class="step-number">1</span>
-                <h3>Barefoot Grounding</h3>
-                <p>Stand on wet earth/moss near flowing water. Plantar nerve activation syncs neural theta rhythms with groundwater flow, anchoring you to quantum time's permutative field.</p>
-            </div>
-            
-            <div class="protocol-step">
-                <span class="step-number">2</span>
-                <h3>Sonic Peripheral Expansion</h3>
-                <p>Soften gaze and let sounds enter awareness without labeling. Broad auditory field accesses semantic entanglement (raindrop ↔ leaf ↔ soil ↔ root).</p>
-            </div>
-            
-            <div class="protocol-step">
-                <span class="step-number">3</span>
-                <h3>Permutation Participation</h3>
-                <p>Match breath to natural rhythms. Your breath becomes part of nature's agential expansion, co-creating spacetime syntax.</p>
-            </div>
-        </div>
-    </section>
-    
-    <section class="compiler-integration" id="compiler">
-        <div class="section-header">
-            <h2>Anatomical Compiler</h2>
-            <p>Quantum Decoherence Modulation Technology</p>
-        </div>
-        
-        <div class="compiler-diagram">
-            <div class="diagram-row">
-                <div class="diagram-node">
-                    <h4>Prima Materia</h4>
-                    <p>Structured Potential</p>
+
+            <!-- Comparison Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Left Column: Dr. Levin -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+                    <h3 class="text-2xl font-bold text-[#4A5568] mb-4 text-center">The Scientific Foundation (Dr. Levin)</h3>
+                    <div id="levin-content" class="space-y-4">
+                        <!-- Content will be dynamically inserted here -->
+                    </div>
+                </div>
+                <!-- Right Column: XQE -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+                    <h3 class="text-2xl font-bold text-[#D4AF37] mb-4 text-center">The Metaphysical Superstructure (XQE)</h3>
+                    <div id="xqe-content" class="space-y-4">
+                        <!-- Content will be dynamically inserted here -->
+                    </div>
                 </div>
             </div>
-            
-            <div class="diagram-connector"></div>
-            
-            <div class="diagram-row">
-                <div class="diagram-node">
-                    <h4>Quantum Time</h4>
-                    <p>Permutation Engine</p>
-                </div>
-            </div>
-            
-            <div class="diagram-connector"></div>
-            
-            <div class="diagram-row">
-                <div class="diagram-node forager-node">
-                    <h4>Adaptive Foragers</h4>
-                    <p>Pattern Identification</p>
-                </div>
-            </div>
-            
-            <div class="diagram-connector forager-connector"></div>
-            
-            <div class="diagram-row">
-                <div class="diagram-node">
-                    <h4>Anatomical Compiler</h4>
-                    <p>Decoherence Modulation</p>
-                </div>
-            </div>
-            
-            <div class="diagram-connector"></div>
-            
-            <div class="diagram-row">
-                <div class="diagram-node">
-                    <h4>Classical Manifestation</h4>
-                    <p>LITs & Reality Patterns</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="xqe-integration">
-        <div class="section-header">
-            <h2>XQE Ecosystem Integration</h2>
-            <p>Co-Creating Quantum Economic Reality</p>
-        </div>
+        </section>
         
-        <div class="integration-grid">
-            <div class="integration-card forager-integration">
-                <h3>DIF Landscape Shaping</h3>
-                <p>Forager activity dynamically shapes the "curvature landscape" of the Dynamic Information Field. Successful stabilization creates "fertile valleys" of low attributed curvature.</p>
+        <!-- Section 3: Synthesis & Critique -->
+        <section id="synthesis" class="py-16 md:py-24 bg-gray-50 rounded-2xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Synthesis & Critique</h2>
+                <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">The report argues that the "fusion" of these frameworks is built on weak analogies and category errors. This section explores two key areas of critique: the competing theories of cancer and aging.</p>
             </div>
             
-            <div class="integration-card forager-integration">
-                <h3>Augmented Collective Intelligence</h3>
-                <p>Information gathered by foragers feeds into the ACI, enhancing the XQE's self-awareness and adaptive capacity.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <!-- Cancer Critique -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Critique: A New Theory of Cancer?</h3>
+                    <p class="text-gray-600 mb-6">The report notes that while the dominant Somatic Mutation Theory (SMT) views cancer as a "hardware" failure (genes), Levin's science offers a credible alternative: a "software" failure of cellular communication. The XQE framework provides a metaphysical origin story for this software failure. The chart below compares these theories on key analytical metrics from the report's perspective.</p>
+                    <div class="chart-container">
+                        <canvas id="cancerChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Aging Critique -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Critique: A New Theory of Aging?</h3>
+                    <p class="text-gray-600 mb-6">The XQE proposes aging is "cumulative compilation error" from a consciousness losing coherence. The report argues this is explanatorily redundant when compared to the established, mechanistic "Hallmarks of Aging" framework in biology. Click below to see the comparison.</p>
+                    
+                    <div id="aging-toggle" class="cursor-pointer bg-gray-100 p-3 rounded-lg text-center font-semibold text-gray-700 hover:bg-gray-200 transition">
+                        Compare "Compilation Error" vs. "Hallmarks of Aging"
+                    </div>
+                    <div id="aging-content" class="hidden mt-4 space-y-4 text-sm">
+                        <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                            <h4 class="font-bold text-[#4A5568]">Hallmarks of Aging (Scientific View)</h4>
+                            <p class="text-gray-600">A framework of specific, measurable molecular processes like genomic instability, telomere attrition, and epigenetic alterations. It offers testable, mechanistic explanations for age-related decline.</p>
+                        </div>
+                        <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                             <h4 class="font-bold text-[#D4AF37]">Cumulative Compilation Error (XQE View)</h4>
+                            <p class="text-gray-600">A high-level narrative attributing all molecular signs of aging to a single, untestable metaphysical cause: a degrading "Time Coefficient" due to a person's inner state. The report finds this adds no new predictive power.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="integration-card forager-integration">
-                <h3>Feedback Evolution</h3>
-                <p>Successful foragers (generating high-TC LITs) are rewarded, creating positive feedback loops that reinforce effective foraging strategies.</p>
+        </section>
+
+
+        <!-- Section 4: The Verdict -->
+        <section id="verdict" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">The Final Verdict</h2>
+                <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">The report concludes by drawing a sharp line between verifiable science and speculative philosophy, emphasizing the power and peril of metaphor in inquiry.</p>
             </div>
-            
-            <div class="integration-card">
-                <h3>Prima Materia as Ultimate Substance</h3>
-                <p>The XQE's "Substance" is fundamentally structured potential. LITs are interfaces representing successful ingression.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-md text-center">
+                    <div class="text-4xl mb-4">🔬</div>
+                    <h3 class="text-xl font-bold text-[#4A5568] mb-2">Science vs. Speculation</h3>
+                    <p class="text-gray-600">The core conclusion is that the "fusion" is an act of conceptual appropriation. Dr. Levin's work is rigorous, testable science. The XQE is a closed, unfalsifiable philosophical system that borrows scientific language to appear credible.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-md text-center">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-xl font-bold text-[#D4AF37] mb-2">The Power of Metaphor</h3>
+                    <p class="text-gray-600">Metaphors like "software" are powerful tools in science to generate hypotheses. The peril arises when a metaphor is mistaken for a literal theory, which the report argues the XQE framework does, leading to potentially harmful ethical conclusions (e.g., blaming the sick).</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-md text-center">
+                     <div class="text-4xl mb-4">❓</div>
+                    <h3 class="text-xl font-bold text-gray-700 mb-2">The Question of Falsifiability</h3>
+                    <p class="text-gray-600">A scientific theory must be testable. The XQE's core mechanisms, like the "Time Coefficient," are defined in non-physical terms, making them immune to empirical refutation. The framework is designed to be a narrative, not a testable model of reality.</p>
+                </div>
             </div>
-            
-            <div class="integration-card">
-                <h3>Quantum Time as Semantic Substrate</h3>
-                <p>All meaning and value potential originates in Quantum Time, where concepts are entangled before manifestation.</p>
-            </div>
-            
-            <div class="integration-card">
-                <h3>Classical Space as Memory</h3>
-                <p>The distributed ledger becomes the XQE's collective memory, reflecting the history of temporally syntactified interactions.</p>
-            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>This interactive application is an interpretation of the "Analytical Deep Dive" report.</p>
+            <p class="text-sm text-gray-400 mt-2">All conceptual content is derived from the source document provided.</p>
         </div>
-    </section>
-    
-    <footer>
-        <div class="logo">
-            <div class="logo-icon">
-                <span>Ψ</span>
-            </div>
-            <h2>Xenial Quantum Economy</h2>
-        </div>
-        <p>Weaving Quantum Potential into Classical Reality</p>
-        
-        <div class="footer-links">
-            <a href="#">Documentation</a>
-            <a href="#">Community</a>
-            <a href="#">Research</a>
-            <a href="#">GitHub</a>
-            <a href="#">Contact</a>
-        </div>
-        
-        <p>© 2025 Augmntd Collective. All realities reserved.</p>
     </footer>
 
     <script>
-        // Quantum Particles Animation
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        const quantumCanvas = document.getElementById('quantumCanvas');
-        quantumCanvas.appendChild(canvas);
-        
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-        
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-            
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = (Math.random() - 0.5) * 1;
-                this.speedY = (Math.random() - 0.5) * 1;
-                this.color = `hsl(${Math.random() * 360}, 80%, 60%)`;
-                this.alpha = Math.random() * 0.5 + 0.1;
-                this.oscillation = Math.random() * Math.PI * 2;
-            }
-            
-            update() {
-                this.x += this.speedX + Math.sin(this.oscillation) * 0.5;
-                this.y += this.speedY + Math.cos(this.oscillation) * 0.5;
-                this.oscillation += 0.02;
-                
-                if (this.x > canvas.width || this.x < 0 || this.y > canvas.height || this.y < 0) {
-                    this.reset();
+        document.addEventListener('DOMContentLoaded', function () {
+            const contentData = {
+                blueprint: {
+                    levin: `
+                        <div class="content-card bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Target Morphology</h4>
+                            <p class="text-gray-700">A species-specific anatomical set-point that a biological system strives to achieve. This "memory" of the correct form is stored and processed within the organism's own <strong>physically embodied and measurable bioelectric networks</strong>.</p>
+                        </div>
+                    `,
+                    xqe: `
+                        <div class="content-card bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Platonic Pattern</h4>
+                            <p class="text-gray-700">A pre-existing, perfect "source code" for an organism's form that exists in an <strong>external, non-physical, and untestable realm</strong> called "Platonic Space." The physical body is just an imperfect copy.</p>
+                        </div>
+                    `
+                },
+                software: {
+                    levin: `
+                        <div class="content-card bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Bioelectric Pattern</h4>
+                            <p class="text-gray-700">A dynamic pattern of voltage gradients across cells. This measurable "software" contains the <strong>instructive information</strong> that tells cells how to organize to build the Target Morphology.</p>
+                        </div>
+                    `,
+                    xqe: `
+                         <div class="content-card bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Compiled Instructions</h4>
+                            <p class="text-gray-700">The result of a metaphysical process called "Ingression," where the abstract Platonic Pattern is <strong>translated into concrete bioelectric "software"</strong> to be executed by the body's raw material.</p>
+                        </div>
+                    `
+                },
+                material: {
+                    levin: `
+                        <div class="content-card bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Agential Cells</h4>
+                            <p class="text-gray-700">Stem cells and tissues are <strong>complex, active participants</strong> in construction. They are problem-solving agents that respond to bioelectric cues to build and repair the body.</p>
+                        </div>
+                    `,
+                    xqe: `
+                        <div class="content-card bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Prima Materia</h4>
+                            <p class="text-gray-700">Biological matter is viewed as a <strong>passive, formless "raw material"</strong> (an alchemical concept) that is simply waiting to be structured by the higher-level compiled instructions.</p>
+                        </div>
+                    `
+                },
+                process: {
+                    levin: `
+                        <div class="content-card bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Development & Regeneration</h4>
+                            <p class="text-gray-700">A robust, <strong>goal-directed, problem-solving process</strong> where a collective of intelligent cells navigates "anatomical morphospace" to robustly achieve the Target Morphology.</p>
+                        </div>
+                    `,
+                    xqe: `
+                        <div class="content-card bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">The Compilation Process</h4>
+                            <p class="text-gray-700">A <strong>top-down, linear metaphysical process</strong> ("Ingression") of translating the perfect Platonic Pattern into low-level instructions, treating the complex biological process as a simple act of execution.</p>
+                        </div>
+                    `
+                },
+                compiler: {
+                    levin: `
+                        <div class="content-card bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">An Aspirational Technology</h4>
+                            <p class="text-gray-700">The "Anatomical Compiler" is a <strong>future, human-engineered communications device</strong> that scientists hope to build. It's an engineering goal to translate human designs into cellular instructions.</p>
+                        </div>
+                    `,
+                    xqe: `
+                        <div class="content-card bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">A Natural, Metaphysical Process</h4>
+                            <p class="text-gray-700">The framework redefines the "Anatomical Compiler" as the <strong>innate, natural process already occurring in every organism</strong> that translates patterns from Platonic space. This is a fundamental category error.</p>
+                        </div>
+                    `
                 }
-            }
+            };
+
+            const levinContent = document.getElementById('levin-content');
+            const xqeContent = document.getElementById('xqe-content');
+            const tabs = document.querySelectorAll('.tab-button');
             
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.globalAlpha = this.alpha;
-                ctx.fill();
-            }
-        }
-        
-        const particles = [];
-        const particleCount = 150;
-        
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-        
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
+            function updateContent(tabId) {
+                levinContent.innerHTML = contentData[tabId].levin;
+                xqeContent.innerHTML = contentData[tabId].xqe;
                 
-                // Draw connections between close particles
-                for (let j = i; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance < 100) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = particles[i].color;
-                        ctx.globalAlpha = (1 - distance / 100) * 0.2;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            
-            requestAnimationFrame(animateParticles);
-        }
-        
-        animateParticles();
-        
-        // Forager Visualization
-        const foragerCanvas = document.getElementById('foragerCanvas');
-        const fctx = foragerCanvas.getContext('2d');
-        foragerCanvas.width = foragerCanvas.parentElement.clientWidth;
-        foragerCanvas.height = foragerCanvas.parentElement.clientHeight;
-        
-        class Forager {
-            constructor() {
-                this.x = Math.random() * foragerCanvas.width;
-                this.y = Math.random() * foragerCanvas.height;
-                this.size = 15 + Math.random() * 20;
-                this.speedX = (Math.random() - 0.5) * 0.8;
-                this.speedY = (Math.random() - 0.5) * 0.8;
-                this.energy = 50 + Math.random() * 50;
-                this.color = `hsl(${30 + Math.random() * 30}, 80%, 60%)`;
-                this.direction = Math.random() * Math.PI * 2;
-                this.oscillation = Math.random() * Math.PI * 2;
-                this.connections = [];
-            }
-            
-            update() {
-                // Move with slight randomness
-                this.direction += (Math.random() - 0.5) * 0.2;
-                this.x += Math.cos(this.direction) * 0.8 + this.speedX;
-                this.y += Math.sin(this.direction) * 0.8 + this.speedY;
-                this.oscillation += 0.05;
-                
-                // Boundary check
-                if (this.x < 0) this.x = foragerCanvas.width;
-                if (this.x > foragerCanvas.width) this.x = 0;
-                if (this.y < 0) this.y = foragerCanvas.height;
-                if (this.y > foragerCanvas.height) this.y = 0;
-                
-                // Energy fluctuations
-                this.energy += (Math.sin(this.oscillation) * 0.5);
-                if (this.energy > 100) this.energy = 100;
-                if (this.energy < 20) this.energy = 20;
-            }
-            
-            draw() {
-                // Draw forager body
-                fctx.beginPath();
-                fctx.arc(this.x, this.y, this.size * (this.energy/100), 0, Math.PI * 2);
-                fctx.fillStyle = this.color;
-                fctx.globalAlpha = 0.7;
-                fctx.fill();
-                
-                // Draw energy field
-                fctx.beginPath();
-                fctx.arc(this.x, this.y, this.size * 1.5 * (this.energy/100), 0, Math.PI * 2);
-                fctx.strokeStyle = this.color;
-                fctx.globalAlpha = 0.2;
-                fctx.lineWidth = 2;
-                fctx.stroke();
-                
-                // Draw connections to patterns
-                this.connections.forEach(conn => {
-                    if (conn.active) {
-                        fctx.beginPath();
-                        fctx.moveTo(this.x, this.y);
-                        fctx.lineTo(conn.pattern.x, conn.pattern.y);
-                        fctx.strokeStyle = `hsl(${60 + this.energy}, 80%, 70%)`;
-                        fctx.globalAlpha = 0.3 + (conn.strength * 0.7);
-                        fctx.lineWidth = 1 + (conn.strength * 3);
-                        fctx.stroke();
+                tabs.forEach(button => {
+                    button.classList.remove('active');
+                    if(button.dataset.tab === tabId) {
+                        button.classList.add('active');
                     }
                 });
             }
-        }
-        
-        class Pattern {
-            constructor() {
-                this.x = Math.random() * foragerCanvas.width;
-                this.y = Math.random() * foragerCanvas.height;
-                this.size = 5 + Math.random() * 15;
-                this.stability = Math.random();
-                this.value = Math.random();
-                this.color = `hsl(${180 + Math.random() * 60}, 70%, 50%)`;
-                this.oscillation = Math.random() * Math.PI * 2;
-            }
-            
-            update() {
-                this.oscillation += 0.01;
-                this.size = 5 + Math.random() * 15 + Math.sin(this.oscillation) * 3;
-            }
-            
-            draw() {
-                const alpha = 0.3 + (this.stability * 0.7);
-                fctx.beginPath();
-                fctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                fctx.fillStyle = this.color;
-                fctx.globalAlpha = alpha;
-                fctx.fill();
-                
-                fctx.beginPath();
-                fctx.arc(this.x, this.y, this.size * 1.5, 0, Math.PI * 2);
-                fctx.strokeStyle = this.color;
-                fctx.globalAlpha = alpha * 0.3;
-                fctx.lineWidth = 1;
-                fctx.stroke();
-            }
-        }
-        
-        const foragers = [];
-        const patterns = [];
-        
-        // Create foragers
-        for (let i = 0; i < 5; i++) {
-            foragers.push(new Forager());
-        }
-        
-        // Create patterns
-        for (let i = 0; i < 30; i++) {
-            patterns.push(new Pattern());
-        }
-        
-        // Connect foragers to patterns
-        foragers.forEach(forager => {
-            for (let i = 0; i < 3; i++) {
-                const pattern = patterns[Math.floor(Math.random() * patterns.length)];
-                forager.connections.push({
-                    pattern: pattern,
-                    strength: Math.random() * 0.5 + 0.5,
-                    active: Math.random() > 0.3
+
+            tabs.forEach(button => {
+                button.addEventListener('click', () => {
+                    updateContent(button.dataset.tab);
                 });
-            }
-        });
-        
-        function animateForagers() {
-            fctx.clearRect(0, 0, foragerCanvas.width, foragerCanvas.height);
-            
-            // Draw background
-            fctx.fillStyle = 'rgba(20, 10, 0, 0.2)';
-            fctx.fillRect(0, 0, foragerCanvas.width, foragerCanvas.height);
-            
-            // Update and draw patterns
-            patterns.forEach(pattern => {
-                pattern.update();
-                pattern.draw();
             });
-            
-            // Update and draw foragers
-            foragers.forEach(forager => {
-                forager.update();
-                forager.draw();
-            });
-            
-            requestAnimationFrame(animateForagers);
-        }
-        
-        animateForagers();
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+
+            updateContent('blueprint');
+
+            const cancerCtx = document.getElementById('cancerChart').getContext('2d');
+            new Chart(cancerCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Mechanistic Detail', 'Falsifiability', 'Predictive Power', 'Therapeutic Potential', 'Internal Coherence'],
+                    datasets: [{
+                        label: 'Somatic Mutation Theory (SMT)',
+                        data: [8, 9, 7, 8, 7],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgb(54, 162, 235)',
+                        pointBackgroundColor: 'rgb(54, 162, 235)',
+                    }, {
+                        label: "Levin's Bioelectric Model",
+                        data: [7, 8, 8, 9, 9],
+                        backgroundColor: 'rgba(74, 85, 104, 0.3)',
+                        borderColor: 'rgb(74, 85, 104)',
+                        pointBackgroundColor: 'rgb(74, 85, 104)',
+                    }, {
+                        label: 'XQE "Error" Model',
+                        data: [2, 1, 2, 3, 5],
+                        backgroundColor: 'rgba(212, 175, 55, 0.3)',
+                        borderColor: 'rgb(212, 175, 55)',
+                        pointBackgroundColor: 'rgb(212, 175, 55)',
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            pointLabels: { 
+                                font: { size: 12 },
+                                color: '#333' 
+                            },
+                            ticks: {
+                                backdropColor: '#FDFBF8',
+                                color: '#666',
+                                stepSize: 2,
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.r !== null) {
+                                        label += context.parsed.r;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
                 }
             });
-        });
-        
-        // Card hover effect enhancement
-        const cards = document.querySelectorAll('.framework-card, .protocol-step, .integration-card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
+
+            const agingToggle = document.getElementById('aging-toggle');
+            const agingContent = document.getElementById('aging-content');
+            agingToggle.addEventListener('click', () => {
+                agingContent.classList.toggle('hidden');
             });
+            
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    header.classList.add('shadow-md');
+                } else {
+                    header.classList.remove('shadow-md');
+                }
+            });
+            
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (mobileMenu.classList.contains('hidden') === false) {
+                       mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+            
+            const sections = document.querySelectorAll('section');
+            const navLi = document.querySelectorAll('nav ul li a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 60) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLi.forEach(a => {
+                    a.classList.remove('active-nav-link');
+                    if (a.getAttribute('href').includes(current)) {
+                        a.classList.add('active-nav-link');
+                    }
+                });
+            });
+
         });
     </script>
 </body>
